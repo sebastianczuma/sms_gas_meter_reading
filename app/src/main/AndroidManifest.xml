@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sebastianczuma.odczytgazomierza">
+
+    <uses-feature android:name="android.hardware.telephony" android:required="true" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.sebastianczuma.odczytgazomierza.Activities.StartActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.sebastianczuma.odczytgazomierza.Activities.SetBankAccountNumber"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.sebastianczuma.odczytgazomierza.Activities.SplashActivity"
+            android:theme="@style/AppTheme.Splash"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.sebastianczuma.odczytgazomierza.Activities.WhereToFind"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.sebastianczuma.odczytgazomierza.Activities.HistoricalData"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.sebastianczuma.odczytgazomierza.Activities.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="com.sebastianczuma.odczytgazomierza.NotificationReminder.ReminderIntentService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver android:name="com.sebastianczuma.odczytgazomierza.NotificationReminder.ReminderEventReceiver" />
+        <receiver android:name="com.sebastianczuma.odczytgazomierza.NotificationReminder.ReminderServiceStarterReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

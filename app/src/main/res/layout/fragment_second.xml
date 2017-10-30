@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:padding="10dp"
+    tools:context="com.sebastianczuma.odczytgazomierza.Activities.MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/information"
+        android:textColor="@color/dark_blue"
+        android:textSize="26sp" />
+
+
+    <ImageButton
+        android:id="@+id/previous_fragment"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="-10dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:id="@+id/historical_data"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_dark_blue"
+        android:elevation="3dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/format"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_format"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/historical_data_text"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/format"
+            android:gravity="center"
+            android:text="@string/historical_data"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/historical_data"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_dark_blue"
+        android:elevation="3dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/notifications_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_notifications_off"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/notifications_text"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/notifications_icon"
+            android:gravity="center"
+            android:text="@string/reminder_off"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/previous_fragment">
+
+        <TextView
+            android:id="@+id/Sebastian_Czuma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/Sebastian_Czuma"
+            android:textColor="@color/orange"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Sebastian_Czuma"
+            android:layout_centerHorizontal="true"
+            android:text="@string/author"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/pgnig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="@string/pgnig" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/reminder_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/notification"
+        android:gravity="center"
+        android:text="@string/reminder_text_example"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

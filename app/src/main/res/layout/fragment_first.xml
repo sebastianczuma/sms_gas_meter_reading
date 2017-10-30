@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    tools:context="com.sebastianczuma.odczytgazomierza.Activities.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/fragment_first_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/meter_reading"
+            android:textColor="@color/dark_blue"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:text="@string/meter_reading_info"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/next_fragment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="-10dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right" />
+
+        <EditText
+            android:id="@+id/meter_reading_input"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/next_fragment"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/edit_text_dark_blue"
+            android:digits="0123456789"
+            android:ems="10"
+            android:gravity="end"
+            android:inputType="number"
+            android:maxLength="5"
+            android:padding="10dp"
+            android:paddingEnd="55dp"
+            android:paddingStart="0dp"
+            android:textColor="#fff"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/meter_reading_input"
+            android:layout_alignEnd="@+id/meter_reading_input"
+            android:layout_alignTop="@+id/meter_reading_input"
+            android:paddingEnd="10dp"
+            android:elevation="3dp"
+            android:paddingStart="0dp"
+            android:text="@string/m3"
+            android:textColor="#e4555f"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_red"
+            android:text="@string/send"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/send"
+            android:layout_below="@+id/next_fragment">
+
+            <TextView
+                android:id="@+id/bank_account_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/bank_account_number_example"
+                android:textColor="@color/dark_blue"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/bank_account_number"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                android:text="@string/edit_number"
+                android:textColor="@color/orange"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/bank_account_number_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bank_account_number"
+                android:layout_alignStart="@+id/bank_account_number"
+                android:text="@string/bank_account_number_info"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image_for_blur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="ContentDescription" />
+</RelativeLayout>

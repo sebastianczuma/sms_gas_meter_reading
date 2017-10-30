@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Odczyt gazu</string>
+
+    <string name="meter_reading">Odczyt licznika</string>
+    <string name="permission_info">Aby kontynuować pozwól aplikacji na wysyłanie wiadomości</string>
+
+    <string name="bank_account_number">Numer rachunku</string>
+    <string name="bank_account_info">Podaj numer indywidualnego rachunku bankowego odbiorcy z faktury w celu identyfikacji klienta - 26 cyfr</string>
+    <string name="where_to_find">Gdzie znajdę numer rachunku?</string>
+
+    <string name="where_to_find_text">Numer rachunku odbiorcy, który należy podać znajduje się na przykład w górnej części faktury*. Zaznaczono go pomarańczowym prostokątem</string>
+    <string name="where_to_find_black">Numer rachunku odbiorcy, który należy podać znajduje się na przykład w górnej części faktury*. Zaznaczono go</string>
+    <string name="where_to_find_orange">pomarańczowym prostokątem</string>
+
+    <string name="meter_reading_info">Podaj odczyt licznika gazomierza zaokrąglając go do pełnych metrów sześciennych - maksymalnie 5 cyfr</string>
+    <string name="dots">-----</string>
+    <string name="m3">m3</string>
+    <string name="bank_account_number_info">Numer indywidualnego rachunku</string>
+    <string name="bank_account_number_example">12 3456 7890 1234 5678 9012 3456</string>
+
+
+    <string name="gas_meter_value_not_set">Proszę, podaj stan licznika</string>
+
+    <string name="send_confirm">Czy na pewno przesłać stan licznika?</string>
+
+
+    <!-- Buttons -->
+
+    <string name="continue_button">Kontynuuj</string>
+    <string name="edit_number">Edytuj numer</string>
+    <string name="send">Wyślij</string>
+
+    <!-- Universal -->
+    <string name="ok">OK</string>
+    <string name="cancel">ANULUJ</string>
+    <string name="confirm">Potwierdzenie</string>
+    <string name="attention">Uwaga</string>
+    <string name="big_send">WYŚLIJ</string>
+
+    <!-- StartActivity -->
+    <string name="no_sim">Nie wykryto karty SIM. Aplikacja zostanie zamknięta.</string>
+    <string name="network_locked">Sieć zablokowana. Aplikacja zostanie zamknięta.</string>
+    <string name="sim_locked_pin">Karta SIM zablokowana (wymagany kod PIN). Aplikacja zostanie zamknięta.</string>
+    <string name="sim_locked_puk">Karta SIM zablokowana (wymagany kod PUK). Aplikacja zostanie zamknięta.</string>
+    <string name="sim_unknown">Nieznany stan karty SIM. Aplikacja zostanie zamknięta.</string>
+
+    <!-- SetBankAccountNumber -->
+    <string name="set_account_number_error_1">Wprowadzony numer rachunku jest za krótki</string>
+    <string name="save">Zapisz</string>
+
+    <!-- MainActivity -->
+    <string name="send_ok">Przesłano stan licznika</string>
+    <string name="send_error_generic">Błąd wysyłania. Stan licznika nie został przesłany.</string>
+    <string name="send_error_no_service">Sieć niedostępna. Stan licznika nie został przesłany.</string>
+    <string name="send_error_null_pdu">Błąd wysyłania (null PDU). Stan licznika nie został przesłany.</string>
+    <string name="send_error_radio_off">Tryb samolotowy jest włączony. Stan licznika nie został przesłany.</string>
+    <string name="success">Sukces</string>
+    <string name="notification_ask">Czy chcesz uruchomić przypomnienia pierwszego dnia miesiąca?</string>
+    <string name="notifications">Przypomnienia</string>
+    <string name="yes">TAK</string>
+    <string name="no">NIE</string>
+
+    <!-- HistoricalData -->
+    <string name="historical_data_title">Dane historyczne</string>
+
+    <!-- FragmentFirst -->
+    <string name="sending">Wysyłanie</string>
+    <string name="sending_in_progress">Przesyłanie stanu gazomierza. Proszę, czekaj</string>
+
+    <string name="no_sim_ff">Nie wykryto karty SIM. Stan licznika nie został przesłany.</string>
+    <string name="network_locked_ff">Sieć zablokowana.  Stan licznika nie został przesłany</string>
+    <string name="sim_locked_pin_ff">Karta SIM zablokowana (wymagany kod PIN).  Stan licznika nie został przesłany</string>
+    <string name="sim_locked_puk_ff">Karta SIM zablokowana (wymagany kod PUK).  Stan licznika nie został przesłany</string>
+    <string name="sim_unknown_ff">Nieznany stan karty SIM.  Stan licznika nie został przesłany</string>
+
+    <!-- FragmentSecond -->
+    <string name="reminder_text">Przypomnienia będą wyświetlane pierwszego dnia miesiąca o</string>
+    <string name="reminder_off">Przypomnienia są wyłączone</string>
+    <string name="reminder_on">Przypomnienia są włączone</string>
+    <string name="reminder_set_time">Wybierz czas przypomnienia</string>
+
+    <string name="manage_notifications_blur_request">manage_notifications_blur_request</string>
+    <string name="create_new_notifications">create_new_notifications</string>
+
+    <string name="information">Informacje</string>
+    <string name="historical_data">Dane historyczne</string>
+    <string name="reminder_text_example">Przypomnienia będą wyświetlane pierwszego dnia miesiąca o 00:00</string>
+    <string name="author">Autor</string>
+    <string name="Sebastian_Czuma">Sebastian Czuma</string>
+    <string name="pgnig">* przykładowa faktura jest własnością firmy PGNiG</string>
+
+    <!-- Notification -->
+    <string name="notification_title">Przypomnienie o odczycie</string>
+    <string name="notification_text">Dotknij aby podać stan licznika</string>
+</resources>
