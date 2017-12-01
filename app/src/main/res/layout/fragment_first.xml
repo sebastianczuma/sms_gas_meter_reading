@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    tools:context="com.sebastianczuma.odczytgazomierza.Activities.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context="com.scz.odczytgazomierza.Activities.MainActivity">
 
     <RelativeLayout
         android:id="@+id/fragment_first_relative_layout"
@@ -95,10 +96,31 @@
             android:layout_below="@+id/next_fragment">
 
             <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bank_account_number_info"
+                android:layout_alignStart="@+id/bank_account_number"
+                android:layout_marginBottom="10dp"
+                android:text=""
+                android:textColor="@color/dark_blue"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/bank_account_number_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bank_account_number"
+                android:layout_alignStart="@+id/bank_account_number"
+                android:text="@string/bank_account_number_info"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/bank_account_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginBottom="10dp"
                 android:text="@string/bank_account_number_example"
                 android:textColor="@color/dark_blue"
                 android:textSize="18sp" />
@@ -108,19 +130,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_below="@+id/bank_account_number"
-                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/bank_account_number"
                 android:background="@android:color/transparent"
                 android:text="@string/edit_number"
                 android:textColor="@color/orange"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/bank_account_number_info"
+            <Button
+                android:id="@+id/choose"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/bank_account_number"
-                android:layout_alignStart="@+id/bank_account_number"
-                android:text="@string/bank_account_number_info"
+                android:layout_height="30dp"
+                android:layout_below="@+id/bank_account_number"
+                android:layout_alignEnd="@id/bank_account_number"
+                android:background="@android:color/transparent"
+                android:text="Wybierz inny"
+                android:textColor="@color/dark_blue"
                 android:textSize="16sp" />
         </RelativeLayout>
     </RelativeLayout>

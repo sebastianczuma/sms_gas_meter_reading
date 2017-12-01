@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.sebastianczuma.odczytgazomierza.Activities.SetBankAccountNumber">
+    tools:context="com.scz.odczytgazomierza.Activities.SetBankAccountNumber">
 
     <RelativeLayout
         android:id="@+id/activity_set_bank_account_number_relative_layout"
@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
-            android:text="@string/bank_account_number"
+            android:text="@string/set_bank_account_number"
             android:textColor="@color/dark_blue"
             android:textSize="26sp" />
 
@@ -60,14 +60,27 @@
             android:digits="0123456789"
             android:ems="10"
             android:gravity="center"
+            android:hint="Numer"
             android:inputType="number"
             android:maxLength="32" />
+
+        <EditText
+            android:id="@+id/bank_account_name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/bank_account_number_input"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Nazwa (opcjonalnie)"
+            android:inputType="text"
+            android:maxLength="26" />
 
         <Button
             android:id="@+id/where_to_find"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/bank_account_number_input"
+            android:layout_below="@+id/bank_account_name_input"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:text="@string/where_to_find"

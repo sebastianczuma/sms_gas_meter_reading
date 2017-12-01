@@ -4,7 +4,7 @@
     android:id="@+id/activity_where_to_find"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sebastianczuma.odczytgazomierza.Activities.WhereToFind">
+    tools:context="com.scz.odczytgazomierza.Activities.WhereToFind">
 
     <TextView
         android:id="@+id/where_to_find_info"

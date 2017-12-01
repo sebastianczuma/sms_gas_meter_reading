@@ -1,0 +1,47 @@
+package com.scz.odczytgazomierza.RecyclerView;
+
+import android.os.Build;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.scz.odczytgazomierza.R;
+
+import java.util.List;
+
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
+    private List<Item> itemList;
+
+    public RecyclerViewAdapter(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    @Override
+    public RecyclerViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_item, null);
+        return new RecyclerViewHolders(layoutView);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerViewHolders holder, int position) {
+
+        String s = "m<sup>3</sup>\t";
+
+        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            holder.unit.setText(Html.fromHtml(s, Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            holder.unit.setText(Html.fromHtml(s));
+        }
+
+        holder.date.setText(itemList.get(position).getDate());
+        holder.meterReading.setText(itemList.get(position).getMeterReading());
+    }
+
+    @Override
+    public int getItemCount() {
+        return this.itemList.size();
+    }
+}

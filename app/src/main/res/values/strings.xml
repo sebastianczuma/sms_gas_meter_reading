@@ -1,18 +1,23 @@
 <resources>
     <string name="app_name">Odczyt gazu</string>
 
-    <string name="meter_reading">Odczyt licznika</string>
-    <string name="permission_info">Aby kontynuować pozwól aplikacji na wysyłanie wiadomości</string>
+    <string name="phone_number">608 600 608</string>
 
-    <string name="bank_account_number">Numer rachunku</string>
-    <string name="bank_account_info">Podaj numer indywidualnego rachunku bankowego odbiorcy z faktury w celu identyfikacji klienta - 26 cyfr</string>
+    <string name="meter_reading">Odczyt licznika</string>
+    <string name="permission_info">Aby przesłać stan licznika gazu na numer 608 600 608 pozwól aplikacji na wysyłanie wiadomości.</string>
+    <string name="permission_info_1">Aby przesłać stan licznika gazu na numer</string>
+    <string name="permission_info_2">pozwól aplikacji na wysyłanie wiadomości</string>
+
+    <string name="set_bank_account_number">Numer rachunku - dodawanie</string>
+    <string name="edit_bank_account_number">Numer rachunku - edycja</string>
+    <string name="bank_account_info">Podaj numer indywidualnego rachunku bankowego odbiorcy z faktury w celu identyfikacji klienta - 26 cyfr.\nNazwa jest opcjonalna.</string>
     <string name="where_to_find">Gdzie znajdę numer rachunku?</string>
 
-    <string name="where_to_find_text">Numer rachunku odbiorcy, który należy podać znajduje się na przykład w górnej części faktury*. Zaznaczono go pomarańczowym prostokątem</string>
-    <string name="where_to_find_black">Numer rachunku odbiorcy, który należy podać znajduje się na przykład w górnej części faktury*. Zaznaczono go</string>
+    <string name="where_to_find_text">Numer rachunku odbiorcy, który należy podać znajduje się na przykład w górnej części faktury. Zaznaczono go pomarańczowym prostokątem</string>
+    <string name="where_to_find_black">Numer rachunku odbiorcy, który należy podać znajduje się na przykład w górnej części faktury. Zaznaczono go</string>
     <string name="where_to_find_orange">pomarańczowym prostokątem</string>
 
-    <string name="meter_reading_info">Podaj odczyt licznika gazomierza zaokrąglając go do pełnych metrów sześciennych - maksymalnie 5 cyfr</string>
+    <string name="meter_reading_info">Podaj odczyt licznika gazomierza zaokrąglając go do pełnych metrów sześciennych - maksymalnie 5 cyfr.\nZostanie on przesłany na numer 608 600 608.</string>
     <string name="dots">-----</string>
     <string name="m3">m3</string>
     <string name="bank_account_number_info">Numer indywidualnego rachunku</string>
@@ -21,7 +26,7 @@
 
     <string name="gas_meter_value_not_set">Proszę, podaj stan licznika</string>
 
-    <string name="send_confirm">Czy na pewno przesłać stan licznika?</string>
+    <string name="send_confirm">Czy na pewno przesłać stan licznika?\nWprowadzono</string>
 
 
     <!-- Buttons -->
@@ -44,9 +49,10 @@
     <string name="sim_locked_puk">Karta SIM zablokowana (wymagany kod PUK). Aplikacja zostanie zamknięta.</string>
     <string name="sim_unknown">Nieznany stan karty SIM. Aplikacja zostanie zamknięta.</string>
 
-    <!-- SetBankAccountNumber -->
+    <!-- Set/EditBankAccountNumber -->
     <string name="set_account_number_error_1">Wprowadzony numer rachunku jest za krótki</string>
     <string name="save">Zapisz</string>
+    <string name="update">Aktualizuj</string>
 
     <!-- MainActivity -->
     <string name="send_ok">Przesłano stan licznika</string>
@@ -85,9 +91,6 @@
     <string name="information">Informacje</string>
     <string name="historical_data">Dane historyczne</string>
     <string name="reminder_text_example">Przypomnienia będą wyświetlane pierwszego dnia miesiąca o 00:00</string>
-    <string name="author">Autor</string>
-    <string name="Sebastian_Czuma">Sebastian Czuma</string>
-    <string name="pgnig">* przykładowa faktura jest własnością firmy PGNiG</string>
 
     <!-- Notification -->
     <string name="notification_title">Przypomnienie o odczycie</string>

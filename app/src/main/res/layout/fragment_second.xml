@@ -8,7 +8,7 @@
     android:clipToPadding="false"
     android:fitsSystemWindows="true"
     android:padding="10dp"
-    tools:context="com.sebastianczuma.odczytgazomierza.Activities.MainActivity">
+    tools:context="com.scz.odczytgazomierza.Activities.MainActivity">
 
     <TextView
         android:id="@+id/title"
@@ -102,40 +102,6 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/previous_fragment">
-
-        <TextView
-            android:id="@+id/Sebastian_Czuma"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/Sebastian_Czuma"
-            android:textColor="@color/orange"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/Sebastian_Czuma"
-            android:layout_centerHorizontal="true"
-            android:text="@string/author"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/pgnig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:text="@string/pgnig" />
     </RelativeLayout>
 
     <TextView
