@@ -26,7 +26,7 @@ import android.widget.RelativeLayout;
 import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.Database.DbHandler;
 import com.scz.odczytgazomierza.Database.DbHandler2;
-import com.scz.odczytgazomierza.Database.Item2;
+import com.scz.odczytgazomierza.RecyclerView2.Item2;
 import com.scz.odczytgazomierza.Fragments.FragmentFirst;
 import com.scz.odczytgazomierza.Fragments.FragmentSecond;
 import com.scz.odczytgazomierza.R;

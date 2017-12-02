@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 
 import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.Database.DbHandler2;
-import com.scz.odczytgazomierza.Database.Item2;
+import com.scz.odczytgazomierza.RecyclerView2.Item2;
 import com.scz.odczytgazomierza.R;
 
 public class EditBankAccountNumber extends AppCompatActivity {
@@ -30,7 +30,7 @@ public class EditBankAccountNumber extends AppCompatActivity {
     EditText newBankAccountNumber;
     EditText newNumberName;
     SharedPreferences preferences;
-    //String bankAccountNumber;
+    String oldBankAccountNumber;
     BackgroundBlur backgroundBlur;
 
     @Override
@@ -100,6 +100,7 @@ public class EditBankAccountNumber extends AppCompatActivity {
     private void prepareBankAccountNumber() {
         String bankAccountNumber = preferences.getString("bankAccountNumber", "");
         String numberName = preferences.getString("numberName", "");
+        oldBankAccountNumber = preferences.getString("bankAccountNumber", "");
         newBankAccountNumber.setText(bankAccountNumber);
         newNumberName.setText(numberName);
     }
@@ -148,7 +149,7 @@ public class EditBankAccountNumber extends AppCompatActivity {
 
         if (number.length() == 26) {
             DbHandler2 dbHandler2 = new DbHandler2(this);
-            if(dbHandler2.searchIfDbContains(number)) {
+            if(dbHandler2.searchIfDbContains(number) && !number.equals(oldBankAccountNumber)) {
                 userInfo("Ten numer znajduje się już na liście.").show();
             } else {
                 SharedPreferences.Editor editor = preferences.edit();
@@ -161,13 +162,17 @@ public class EditBankAccountNumber extends AppCompatActivity {
                 if (name.length() > 0) {
                     item2.setName(name);
                 }
-                dbHandler2.addItem2(item2);
+                if(dbHandler2.searchIfDbContains(oldBankAccountNumber)) {
+                    dbHandler2.updateOneItem2(oldBankAccountNumber, item2);
+                } else {
+                    dbHandler2.addItem2(item2);
+                }
+                dbHandler2.close();
 
                 startActivity(new Intent(this, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 finish();
             }
-            dbHandler2.close();
         } else {
             userInfo(getString(R.string.set_account_number_error_1)).show();
         }

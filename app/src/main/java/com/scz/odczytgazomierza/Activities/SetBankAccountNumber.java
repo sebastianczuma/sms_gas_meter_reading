@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 
 import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.Database.DbHandler2;
-import com.scz.odczytgazomierza.Database.Item2;
+import com.scz.odczytgazomierza.RecyclerView2.Item2;
 import com.scz.odczytgazomierza.R;
 
 public class SetBankAccountNumber extends AppCompatActivity {
@@ -93,15 +93,6 @@ public class SetBankAccountNumber extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-
-        prepareBankAccountNumber();
-    }
-
-    private void prepareBankAccountNumber() {
-        String bankAccountNumber = preferences.getString("bankAccountNumber", "");
-        String numberName = preferences.getString("numberName", "");
-        newBankAccountNumber.setText(bankAccountNumber);
-        newNumberName.setText(numberName);
     }
 
     private void checkAndModifyUserInput() {

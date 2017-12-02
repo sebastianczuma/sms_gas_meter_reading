@@ -10,6 +10,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.scz.odczytgazomierza.RecyclerView2.Item2;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,6 +55,17 @@ public class DbHandler2 extends SQLiteOpenHelper {
         cursor.close();
 
         return answear;
+    }
+
+    public void updateOneItem2(String oldBankAccountNumber, Item2 item2) {
+        ContentValues values = new ContentValues();
+        values.put("BANK_ACCOUNT_NUMBER", item2.getBankAccountNumber());
+        values.put("NAME", item2.getName());
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] args = new String[]{oldBankAccountNumber};
+        db.update("main_table_2", values, "BANK_ACCOUNT_NUMBER=?", args);
     }
 
     public void deleteOneItem2(String bankAccountNumber) {
