@@ -44,7 +44,7 @@ public class DbHandler2 extends SQLiteOpenHelper {
         db.insertOrThrow("main_table_2", null, values);
     }
 
-    public boolean searchIfDbContains(String bankAccountNumber) {
+    public boolean searchIfDbContains2(String bankAccountNumber) {
         String[] columns = {"BANK_ACCOUNT_NUMBER"};
         String[] selectionArgs = {bankAccountNumber};
 
@@ -91,5 +91,21 @@ public class DbHandler2 extends SQLiteOpenHelper {
         }
         cursor.close();
         return items2;
+    }
+
+    public String searchName(String bankAccountNumber) {
+        String[] columns = {"NAME"};
+        String[] selectionArgs = {bankAccountNumber};
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.query("main_table_2", columns, "BANK_ACCOUNT_NUMBER=?", selectionArgs, null, null, null, "1");
+        String name = "";
+        while (cursor.moveToNext()) {
+            name = cursor.getString(0);
+        }
+
+        cursor.close();
+
+        return name;
     }
 }

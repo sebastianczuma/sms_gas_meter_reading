@@ -119,7 +119,7 @@ public class StartActivity extends AppCompatActivity {
                 PreferenceManager.getDefaultSharedPreferences(this);
         String number = preferences.getString("bankAccountNumber", "");
 
-        if (!number.equals("") && number.length() == 26) {
+        if (!number.equals("") && number.length() == 32) {
             // Bank account number already set
             startActivity(new Intent(this, MainActivity.class));
             finish();

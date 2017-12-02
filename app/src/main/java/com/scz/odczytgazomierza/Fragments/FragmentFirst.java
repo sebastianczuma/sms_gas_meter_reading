@@ -22,8 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.scz.odczytgazomierza.Activities.BankAccountNumberList;
 import com.scz.odczytgazomierza.Activities.EditBankAccountNumber;
+import com.scz.odczytgazomierza.Activities.ListBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.MainActivity;
 import com.scz.odczytgazomierza.Interfaces.PhoneNumber;
 import com.scz.odczytgazomierza.R;
@@ -72,7 +72,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), BankAccountNumberList.class));
+                startActivity(new Intent(getActivity(), ListBankAccountNumber.class));
             }
         });
 
@@ -85,9 +85,9 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
 
         bankAccountNumber = preferences.getString("bankAccountNumber", "");
 
-        for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
+        /*for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
             bankAccountNumber = new StringBuilder(bankAccountNumber).insert(i, " ").toString();
-        }
+        }*/
 
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             unit.setText(Html.fromHtml("m<sup>3</sup>\t", Html.FROM_HTML_MODE_LEGACY));

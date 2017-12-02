@@ -53,6 +53,8 @@
     <string name="set_account_number_error_1">Wprowadzony numer rachunku jest za krótki</string>
     <string name="save">Zapisz</string>
     <string name="update">Aktualizuj</string>
+    <string name="number">Numer</string>
+    <string name="name">Nazwa (opcjonalnie)</string>
 
     <!-- MainActivity -->
     <string name="send_ok">Przesłano stan licznika</string>
@@ -68,6 +70,10 @@
 
     <!-- HistoricalData -->
     <string name="historical_data_title">Dane historyczne</string>
+
+    <!-- ListBankAccountNumber -->
+    <string name="list_bank_account_number_title">Lista numerów</string>
+    <string name="list_bank_account_number_text">Dotknij aby wybrać. Przytrzymaj aby usunąć.</string>
 
     <!-- FragmentFirst -->
     <string name="sending">Wysyłanie</string>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.scz.odczytgazomierza.Database.DbHandler2;
 import com.scz.odczytgazomierza.R;
 
 import java.util.List;
@@ -38,6 +39,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
         holder.date.setText(itemList.get(position).getDate());
         holder.meterReading.setText(itemList.get(position).getMeterReading());
+
+        String accountNumber = itemList.get(position).getBankAccountNumber();
+        holder.number.setText(accountNumber);
+
+        //accountNumber = accountNumber.replace(" ", "");
+
+        DbHandler2 dbHandler2 = new DbHandler2(holder.number.getContext());
+        String fName = dbHandler2.searchName(accountNumber);
+        holder.name.setText(fName);
     }
 
     @Override

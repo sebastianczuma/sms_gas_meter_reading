@@ -10,12 +10,16 @@ class RecyclerViewHolders extends RecyclerView.ViewHolder {
     TextView date;
     TextView meterReading;
     TextView unit;
+    TextView number;
+    TextView name;
 
     RecyclerViewHolders(View itemView) {
         super(itemView);
 
-        date = (TextView) itemView.findViewById(R.id.date);
-        meterReading = (TextView) itemView.findViewById(R.id.meter_reading);
-        unit = (TextView) itemView.findViewById(R.id.unit);
+        date = itemView.findViewById(R.id.date);
+        meterReading = itemView.findViewById(R.id.meter_reading);
+        unit = itemView.findViewById(R.id.unit);
+        number = itemView.findViewById(R.id.number);
+        name = itemView.findViewById(R.id.name);
     }
 }

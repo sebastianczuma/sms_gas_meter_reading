@@ -57,7 +57,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Activities.BankAccountNumberList" />
+        <activity android:name=".Activities.ListBankAccountNumber" />
         <activity android:name=".Activities.EditBankAccountNumber"></activity>
     </application>
 

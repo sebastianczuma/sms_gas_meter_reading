@@ -60,7 +60,7 @@
             android:digits="0123456789"
             android:ems="10"
             android:gravity="center"
-            android:hint="Numer"
+            android:hint="@string/number"
             android:inputType="number"
             android:maxLength="32" />
 
@@ -68,11 +68,11 @@
             android:id="@+id/bank_account_name_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/bank_account_number_input"
+            android:layout_centerHorizontal="true"
             android:ems="10"
             android:gravity="center"
-            android:hint="Nazwa (opcjonalnie)"
+            android:hint="@string/name"
             android:inputType="text"
             android:maxLength="26" />
 

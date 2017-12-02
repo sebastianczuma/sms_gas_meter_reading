@@ -145,11 +145,11 @@ public class EditBankAccountNumber extends AppCompatActivity {
     private void saveBankAccountNumber() {
         String number = newBankAccountNumber.getText().toString();
         String name = newNumberName.getText().toString();
-        number = number.replace(" ", "");
+        //number = number.replace(" ", "");
 
-        if (number.length() == 26) {
+        if (number.length() == 32) {
             DbHandler2 dbHandler2 = new DbHandler2(this);
-            if (dbHandler2.searchIfDbContains(number) && !number.equals(oldBankAccountNumber)) {
+            if (dbHandler2.searchIfDbContains2(number) && !number.equals(oldBankAccountNumber)) {
                 userInfo("Ten numer znajduje się już na liście.").show();
             } else {
                 SharedPreferences.Editor editor = preferences.edit();
@@ -162,7 +162,7 @@ public class EditBankAccountNumber extends AppCompatActivity {
                 if (name.length() > 0) {
                     item2.setName(name);
                 }
-                if (dbHandler2.searchIfDbContains(oldBankAccountNumber)) {
+                if (dbHandler2.searchIfDbContains2(oldBankAccountNumber)) {
                     dbHandler2.updateOneItem2(oldBankAccountNumber, item2);
                 } else {
                     dbHandler2.addItem2(item2);

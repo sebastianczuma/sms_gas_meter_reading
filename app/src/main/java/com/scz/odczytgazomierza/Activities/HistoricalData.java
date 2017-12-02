@@ -30,7 +30,7 @@ public class HistoricalData extends AppCompatActivity {
         }
 
         GridLayoutManager lLayout = new GridLayoutManager(this, 1);
-        RecyclerView rView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView rView = findViewById(R.id.recycler_view);
         rView.setNestedScrollingEnabled(false);
 
         // Recycle View setup
