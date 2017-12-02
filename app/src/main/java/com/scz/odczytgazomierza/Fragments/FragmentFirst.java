@@ -25,7 +25,6 @@ import android.widget.TextView;
 import com.scz.odczytgazomierza.Activities.BankAccountNumberList;
 import com.scz.odczytgazomierza.Activities.EditBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.MainActivity;
-import com.scz.odczytgazomierza.Activities.SetBankAccountNumber;
 import com.scz.odczytgazomierza.Interfaces.PhoneNumber;
 import com.scz.odczytgazomierza.R;
 
@@ -47,6 +46,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
         meterReading = mView.findViewById(R.id.meter_reading_input);
         TextView unit = mView.findViewById(R.id.unit);
         TextView bankAccountNumberView = mView.findViewById(R.id.bank_account_number);
+        TextView name = mView.findViewById(R.id.name);
         Button edit = mView.findViewById(R.id.edit);
         Button send = mView.findViewById(R.id.send);
         Button choose = mView.findViewById(R.id.choose);
@@ -96,6 +96,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
         }
 
         bankAccountNumberView.setText(bankAccountNumber);
+        name.setText(preferences.getString("numberName", ""));
 
         return mView;
     }
@@ -177,17 +178,17 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
 
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             builder.setTitle(getString(R.string.confirm))
-                .setMessage(Html.fromHtml(message + " " + reading + " " + "m<sup>3</sup>\t", Html.FROM_HTML_MODE_LEGACY))
-                .setPositiveButton(getString(R.string.big_send), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        sendSMS();
-                    }
-                }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    .setMessage(Html.fromHtml(message + " " + reading + " " + "m<sup>3</sup>\t", Html.FROM_HTML_MODE_LEGACY))
+                    .setPositiveButton(getString(R.string.big_send), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            sendSMS();
+                        }
+                    }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                });
+                }
+            });
         } else {
             builder.setTitle(getString(R.string.confirm))
                     .setMessage(Html.fromHtml(message + " " + reading + " " + "m<sup>3</sup>\t"))

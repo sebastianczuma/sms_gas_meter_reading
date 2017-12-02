@@ -26,12 +26,12 @@ import android.widget.RelativeLayout;
 import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.Database.DbHandler;
 import com.scz.odczytgazomierza.Database.DbHandler2;
-import com.scz.odczytgazomierza.RecyclerView2.Item2;
 import com.scz.odczytgazomierza.Fragments.FragmentFirst;
 import com.scz.odczytgazomierza.Fragments.FragmentSecond;
+import com.scz.odczytgazomierza.Interfaces.PhoneNumber;
 import com.scz.odczytgazomierza.R;
 import com.scz.odczytgazomierza.RecyclerView.Item;
-import com.scz.odczytgazomierza.Interfaces.PhoneNumber;
+import com.scz.odczytgazomierza.RecyclerView2.Item2;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
-
 
 
         final DbHandler2 dbHandler2 = new DbHandler2(this);

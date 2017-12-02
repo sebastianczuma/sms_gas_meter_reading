@@ -46,7 +46,7 @@ public class DbHandler2 extends SQLiteOpenHelper {
 
     public boolean searchIfDbContains(String bankAccountNumber) {
         String[] columns = {"BANK_ACCOUNT_NUMBER"};
-        String[] selectionArgs = { bankAccountNumber };
+        String[] selectionArgs = {bankAccountNumber};
 
         SQLiteDatabase db = getReadableDatabase();
 

@@ -51,7 +51,7 @@ public class StartActivity extends AppCompatActivity {
                 "<font color = \"#f58400\">" + getString(R.string.phone_number) + "</font>";
 
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            text.setText(Html.fromHtml(permissionInfo1 + " " + phoneNumber+  " " + permissionInfo2,
+            text.setText(Html.fromHtml(permissionInfo1 + " " + phoneNumber + " " + permissionInfo2,
                     Html.FROM_HTML_MODE_LEGACY));
         } else {
             text.setText(Html.fromHtml(permissionInfo1 + " " + phoneNumber + " " + permissionInfo2));

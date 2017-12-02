@@ -20,8 +20,8 @@ import android.widget.RelativeLayout;
 
 import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.Database.DbHandler2;
-import com.scz.odczytgazomierza.RecyclerView2.Item2;
 import com.scz.odczytgazomierza.R;
+import com.scz.odczytgazomierza.RecyclerView2.Item2;
 
 public class EditBankAccountNumber extends AppCompatActivity {
     public static String isNextBlurRequested = "";
@@ -149,7 +149,7 @@ public class EditBankAccountNumber extends AppCompatActivity {
 
         if (number.length() == 26) {
             DbHandler2 dbHandler2 = new DbHandler2(this);
-            if(dbHandler2.searchIfDbContains(number) && !number.equals(oldBankAccountNumber)) {
+            if (dbHandler2.searchIfDbContains(number) && !number.equals(oldBankAccountNumber)) {
                 userInfo("Ten numer znajduje się już na liście.").show();
             } else {
                 SharedPreferences.Editor editor = preferences.edit();
@@ -162,7 +162,7 @@ public class EditBankAccountNumber extends AppCompatActivity {
                 if (name.length() > 0) {
                     item2.setName(name);
                 }
-                if(dbHandler2.searchIfDbContains(oldBankAccountNumber)) {
+                if (dbHandler2.searchIfDbContains(oldBankAccountNumber)) {
                     dbHandler2.updateOneItem2(oldBankAccountNumber, item2);
                 } else {
                     dbHandler2.addItem2(item2);

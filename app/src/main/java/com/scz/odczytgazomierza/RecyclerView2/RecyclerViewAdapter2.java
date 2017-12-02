@@ -1,8 +1,6 @@
 package com.scz.odczytgazomierza.RecyclerView2;
 
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +24,13 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolders2 holder, int position) {
+    public void onBindViewHolder(RecyclerViewHolders2 holder2, int position) {
         String bankAccountNumber = itemList.get(position).getBankAccountNumber();
         for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
             bankAccountNumber = new StringBuilder(bankAccountNumber).insert(i, " ").toString();
         }
-        holder.name.setText(itemList.get(position).getName());
-        holder.number.setText(bankAccountNumber);
+        holder2.name.setText(itemList.get(position).getName());
+        holder2.number.setText(bankAccountNumber);
     }
 
     @Override

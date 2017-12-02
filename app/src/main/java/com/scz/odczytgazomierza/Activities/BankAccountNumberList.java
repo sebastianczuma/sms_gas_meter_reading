@@ -3,19 +3,16 @@ package com.scz.odczytgazomierza.Activities;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.scz.odczytgazomierza.Database.DbHandler;
 import com.scz.odczytgazomierza.Database.DbHandler2;
 import com.scz.odczytgazomierza.R;
-import com.scz.odczytgazomierza.RecyclerView.Item;
-import com.scz.odczytgazomierza.RecyclerView.RecyclerViewAdapter;
 import com.scz.odczytgazomierza.RecyclerView2.Item2;
 import com.scz.odczytgazomierza.RecyclerView2.RecyclerViewAdapter2;
 
