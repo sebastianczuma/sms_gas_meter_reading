@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -54,6 +55,7 @@ public class HistoricalData extends AppCompatActivity {
                     i.getMeterReading(),
                     i.getBankAccountNumber(),
                     i.getPhoneNumber()));
+            Log.e("hist db", i.getBankAccountNumber());
         }
         dbHandler.close();
         return allItems;

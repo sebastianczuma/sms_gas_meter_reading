@@ -8,8 +8,8 @@
     <string name="permission_info_1">Aby przesłać stan licznika gazu na numer</string>
     <string name="permission_info_2">pozwól aplikacji na wysyłanie wiadomości</string>
 
-    <string name="set_bank_account_number">Numer rachunku - dodawanie</string>
-    <string name="edit_bank_account_number">Numer rachunku - edycja</string>
+    <string name="set_bank_account_number">Dodaj numer rachunku</string>
+    <string name="edit_bank_account_number">Edytuj umer rachunku</string>
     <string name="bank_account_info">Podaj numer indywidualnego rachunku bankowego odbiorcy z faktury w celu identyfikacji klienta - 26 cyfr.\nNazwa jest opcjonalna.</string>
     <string name="where_to_find">Gdzie znajdę numer rachunku?</string>
 
@@ -30,7 +30,6 @@
 
 
     <!-- Buttons -->
-
     <string name="continue_button">Kontynuuj</string>
     <string name="edit_number">Edytuj numer</string>
     <string name="send">Wyślij</string>
@@ -57,7 +56,7 @@
     <string name="name">Nazwa (opcjonalnie)</string>
 
     <!-- MainActivity -->
-    <string name="send_ok">Przesłano stan licznika</string>
+    <string name="send_ok">Przesłano stan licznika. W przypadku problemów zostaniesz poinformowany przez wiadomość SMS.</string>
     <string name="send_error_generic">Błąd wysyłania. Stan licznika nie został przesłany.</string>
     <string name="send_error_no_service">Sieć niedostępna. Stan licznika nie został przesłany.</string>
     <string name="send_error_null_pdu">Błąd wysyłania (null PDU). Stan licznika nie został przesłany.</string>

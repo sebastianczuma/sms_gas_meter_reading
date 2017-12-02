@@ -40,7 +40,7 @@ class RecyclerViewHolders2 extends RecyclerView.ViewHolder implements View.OnCli
         Intent intent = new Intent(view.getContext(), MainActivity.class);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         SharedPreferences.Editor editor = preferences.edit();
-        String bankAccountNumber = number.getText().toString();//.replace(" ", "");
+        String bankAccountNumber = number.getText().toString().replace(" ", "");
 
         editor.putString("bankAccountNumber", bankAccountNumber);
         editor.putString("numberName", name.getText().toString());
@@ -50,7 +50,7 @@ class RecyclerViewHolders2 extends RecyclerView.ViewHolder implements View.OnCli
 
     @Override
     public boolean onLongClick(final View view) {
-        String bankAccountNumber = number.getText().toString();//.replace(" ", "");
+        String bankAccountNumber = number.getText().toString().replace(" ", "");
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String checkString = preferences.getString("bankAccountNumber", "");
@@ -58,7 +58,7 @@ class RecyclerViewHolders2 extends RecyclerView.ViewHolder implements View.OnCli
         if (bankAccountNumber.equals(checkString)) {
             userInfo2(view).show();
         } else {
-            userInfo(view, "Czy na pewno chcesz usunąć numer " + number.getText().toString() + " z listy?").show();
+            userInfo(view, "Czy na pewno chcesz usunąć numer\n" + number.getText().toString() + "?").show();
         }
 
         return false;
@@ -77,7 +77,7 @@ class RecyclerViewHolders2 extends RecyclerView.ViewHolder implements View.OnCli
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         DbHandler2 dbHandler2 = new DbHandler2(view.getContext());
-                        String bankAccountNumber = number.getText().toString();//.replace(" ", "");
+                        String bankAccountNumber = number.getText().toString().replace(" ", "");
                         dbHandler2.deleteOneItem2(bankAccountNumber);
                         context.dataSetChanged();
                     }

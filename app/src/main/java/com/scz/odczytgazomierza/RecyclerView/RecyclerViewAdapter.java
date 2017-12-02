@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         String accountNumber = itemList.get(position).getBankAccountNumber();
         holder.number.setText(accountNumber);
 
-        //accountNumber = accountNumber.replace(" ", "");
+        accountNumber = accountNumber.replace(" ", "");
 
         DbHandler2 dbHandler2 = new DbHandler2(holder.number.getContext());
         String fName = dbHandler2.searchName(accountNumber);

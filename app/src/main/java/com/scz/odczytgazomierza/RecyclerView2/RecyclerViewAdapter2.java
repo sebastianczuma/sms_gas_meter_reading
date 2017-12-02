@@ -38,9 +38,9 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewHolde
             holder2.check.setChecked(true);
         }
 
-        /*for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
+        for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
             bankAccountNumber = new StringBuilder(bankAccountNumber).insert(i, " ").toString();
-        }*/
+        }
         holder2.name.setText(itemList.get(position).getName());
         holder2.number.setText(bankAccountNumber);
 

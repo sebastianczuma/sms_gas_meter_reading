@@ -145,9 +145,9 @@ public class EditBankAccountNumber extends AppCompatActivity {
     private void saveBankAccountNumber() {
         String number = newBankAccountNumber.getText().toString();
         String name = newNumberName.getText().toString();
-        //number = number.replace(" ", "");
+        number = number.replace(" ", "");
 
-        if (number.length() == 32) {
+        if (number.length() == 26) {
             DbHandler2 dbHandler2 = new DbHandler2(this);
             if (dbHandler2.searchIfDbContains2(number) && !number.equals(oldBankAccountNumber)) {
                 userInfo("Ten numer znajduje się już na liście.").show();

@@ -25,8 +25,13 @@ import android.widget.TextView;
 import com.scz.odczytgazomierza.Activities.EditBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.ListBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.MainActivity;
+import com.scz.odczytgazomierza.Database.DbHandler;
 import com.scz.odczytgazomierza.Interfaces.PhoneNumber;
 import com.scz.odczytgazomierza.R;
+import com.scz.odczytgazomierza.RecyclerView.Item;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FragmentFirst extends Fragment implements PhoneNumber {
     public EditText meterReading;
@@ -85,9 +90,9 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
 
         bankAccountNumber = preferences.getString("bankAccountNumber", "");
 
-        /*for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
+        for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
             bankAccountNumber = new StringBuilder(bankAccountNumber).insert(i, " ").toString();
-        }*/
+        }
 
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             unit.setText(Html.fromHtml("m<sup>3</sup>\t", Html.FROM_HTML_MODE_LEGACY));
