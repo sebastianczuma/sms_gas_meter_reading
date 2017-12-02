@@ -143,8 +143,8 @@
                 android:layout_alignEnd="@id/bank_account_number"
                 android:layout_below="@+id/bank_account_number"
                 android:background="@android:color/transparent"
-                android:text="Wybierz inny"
-                android:textColor="@color/dark_blue"
+                android:text="@string/choose_another"
+                android:textColor="@color/orange"
                 android:textSize="16sp" />
         </RelativeLayout>
     </RelativeLayout>

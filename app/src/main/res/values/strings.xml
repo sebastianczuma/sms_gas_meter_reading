@@ -78,6 +78,7 @@
     <!-- FragmentFirst -->
     <string name="sending">Wysyłanie</string>
     <string name="sending_in_progress">Przesyłanie stanu gazomierza. Proszę, czekaj</string>
+    <string name="choose_another">Wybierz inny</string>
 
     <string name="no_sim_ff">Nie wykryto karty SIM. Stan licznika nie został przesłany.</string>
     <string name="network_locked_ff">Sieć zablokowana.  Stan licznika nie został przesłany</string>

@@ -27,8 +27,8 @@ import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.R;
 
 public class StartActivity extends AppCompatActivity {
-    private final int PERMISSION_REQUEST_CODE = 1;
-    private BackgroundBlur backgroundBlur;
+    final int PERMISSION_REQUEST_CODE = 1;
+    BackgroundBlur backgroundBlur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -31,7 +31,7 @@ import com.scz.odczytgazomierza.R;
 public class FragmentFirst extends Fragment implements PhoneNumber {
     public EditText meterReading;
     public String bankAccountNumber;
-    private String smsBody;
+    String smsBody;
 
 
     public FragmentFirst() {
@@ -138,7 +138,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
         }
     }
 
-    public boolean doesSimExists() {
+    private boolean doesSimExists() {
         TelephonyManager telephonyManager = (TelephonyManager)
                 getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         int SIM_STATE = telephonyManager.getSimState();

@@ -38,7 +38,6 @@ public class DbHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    // Urzadzenia
     public void addItem(Item item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -49,6 +48,7 @@ public class DbHandler extends SQLiteOpenHelper {
         db.insertOrThrow("main_table", null, values);
     }
 
+    /*
     public String deleteOneItem(int id) {
         SQLiteDatabase db = getWritableDatabase();
         String number = Integer.toString(id);
@@ -57,7 +57,7 @@ public class DbHandler extends SQLiteOpenHelper {
         };
         db.delete("main_table", "ID=?", args);
         return number;
-    }
+    }*/
 
     public List<Item> returnAll() {
         List<Item> items = new LinkedList<>();

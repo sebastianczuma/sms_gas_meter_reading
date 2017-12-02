@@ -51,10 +51,10 @@ public class DbHandler2 extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query("main_table_2", columns, "BANK_ACCOUNT_NUMBER=?", selectionArgs, null, null, null, "1");
-        boolean answear = cursor.getCount() > 0;
+        boolean answer = cursor.getCount() > 0;
         cursor.close();
 
-        return answear;
+        return answer;
     }
 
     public void updateOneItem2(String oldBankAccountNumber, Item2 item2) {
