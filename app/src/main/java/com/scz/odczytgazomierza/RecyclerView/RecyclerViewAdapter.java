@@ -42,6 +42,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
         String bankAccountNumber = itemList.get(position).getBankAccountNumber();
 
+        bankAccountNumber = bankAccountNumber.replace(" ", "");
+
         for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
             bankAccountNumber = new StringBuilder(bankAccountNumber).insert(i, " ").toString();
         }

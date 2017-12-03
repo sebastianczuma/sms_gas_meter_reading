@@ -6,7 +6,7 @@
     <string name="meter_reading">Odczyt licznika</string>
     <string name="permission_info">Aby przesłać stan licznika gazu na numer 608 600 608 pozwól aplikacji na wysyłanie wiadomości.</string>
     <string name="permission_info_1">Aby przesłać stan licznika gazu na numer</string>
-    <string name="permission_info_2">pozwól aplikacji na wysyłanie wiadomości</string>
+    <string name="permission_info_2">pozwól aplikacji na wysyłanie wiadomości.</string>
 
     <string name="set_bank_account_number">Dodaj numer rachunku</string>
     <string name="edit_bank_account_number">Edytuj numer rachunku</string>
@@ -52,7 +52,7 @@
     <string name="set_account_number_error_1">Wprowadzony numer rachunku jest za krótki</string>
     <string name="save">Zapisz</string>
     <string name="update">Aktualizuj</string>
-    <string name="number">Numer</string>
+    <string name="number">Numer rachunku</string>
     <string name="name">Nazwa (opcjonalnie)</string>
 
     <!-- MainActivity -->
@@ -73,6 +73,7 @@
     <!-- ListBankAccountNumber -->
     <string name="list_bank_account_number_title">Lista numerów</string>
     <string name="list_bank_account_number_text">Dotknij aby wybrać. Przytrzymaj aby usunąć.</string>
+    <string name="add_new_number">Dodaj</string>
 
     <!-- FragmentFirst -->
     <string name="sending">Wysyłanie</string>
