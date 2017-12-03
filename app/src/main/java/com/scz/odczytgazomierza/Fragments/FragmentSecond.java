@@ -1,17 +1,24 @@
 package com.scz.odczytgazomierza.Fragments;
 
+import android.app.AlarmManager;
+import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -19,13 +26,15 @@ import android.widget.TimePicker;
 import com.scz.odczytgazomierza.Activities.HistoricalData;
 import com.scz.odczytgazomierza.Activities.MainActivity;
 import com.scz.odczytgazomierza.Animations.Animations;
-import com.scz.odczytgazomierza.NotificationReminder.ReminderEventReceiver;
+import com.scz.odczytgazomierza.NotificationReminder.AlarmReceiver;
 import com.scz.odczytgazomierza.R;
 
 import java.util.Calendar;
 
 public class FragmentSecond extends Fragment {
     public boolean isReminderSet;
+    AlarmManager alarmMgr;
+    PendingIntent alarmIntent;
     private TextView notificationHour;
     private TextView notificationInfo;
     private ImageView notificationIcon;
@@ -57,14 +66,15 @@ public class FragmentSecond extends Fragment {
         isReminderSet = preferences.getBoolean("isReminderSet", false);
 
         if (isReminderSet) {
-            notificationInfo.setText(getString(R.string.reminder_off));
+            notificationInfo.setText(getString(R.string.reminder_on));
             notificationIcon.setImageResource(R.drawable.ic_notifications);
             notificationHour.setVisibility(View.VISIBLE);
 
             int hourInt = preferences.getInt("hourInt", 0);
             int minuteInt = preferences.getInt("minuteInt", 0);
+            int dayInt = preferences.getInt("dayInt", 1);
 
-            notificationHour.setText(setNotificationInfo(hourInt, minuteInt));
+            notificationHour.setText(setNotificationInfo(dayInt, hourInt, minuteInt));
         }
 
         notifications.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +102,7 @@ public class FragmentSecond extends Fragment {
         return mView;
     }
 
-    private String setNotificationInfo(int hourInt, int minuteInt) {
+    private String setNotificationInfo(int dayInt, int hourInt, int minuteInt) {
         String hourString;
         String minuteString;
 
@@ -107,7 +117,7 @@ public class FragmentSecond extends Fragment {
         } else {
             minuteString = Integer.toString(minuteInt);
         }
-        return getString(R.string.reminder_text) + " " + hourString + ":" + minuteString;
+        return "Przypomnienia będą wyświetlane " + dayInt + " dnia miesiąca o " + hourString + ":" + minuteString;
     }
 
     private void hideInfo() {
@@ -120,93 +130,100 @@ public class FragmentSecond extends Fragment {
         notificationHour.setVisibility(View.VISIBLE);
     }
 
-    private void manageNotifications() {
-        final SharedPreferences.Editor editor = preferences.edit();
+    public void manageNotifications() {
+        alarmMgr = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getContext(), AlarmReceiver.class);
+        alarmIntent = PendingIntent.getBroadcast(getContext(), 1001, intent, 0);
+
         if (isReminderSet) {
-            int identificationNumber = 1001;
-            ReminderEventReceiver.CancelAlarm(getActivity(), identificationNumber);
+
+            if (alarmMgr != null) {
+                alarmMgr.cancel(alarmIntent);
+            }
 
             notificationInfo.setText(getString(R.string.reminder_off));
             notificationIcon.setImageResource(R.drawable.ic_notifications_off);
 
-            editor.putInt("reminderIdentification", identificationNumber);
+            final SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("reminderIdentification", 1001);
             editor.putBoolean("isReminderSet", false);
             editor.apply();
             isReminderSet = false;
 
             hideInfo();
         } else {
-            Calendar mcurrentTime = Calendar.getInstance();
-            final int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-            final int minute = mcurrentTime.get(Calendar.MINUTE);
-            TimePickerDialog mTimePicker = new TimePickerDialog(getActivity(),
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker,
-                                              int selectedHour,
-                                              int selectedMinute) {
-                            ReminderEventReceiver reminderEventReceiver
-                                    = new ReminderEventReceiver(selectedHour, selectedMinute, 1001);
-                            reminderEventReceiver.setupAlarm(getActivity());
-
-                            editor.putString("hour", Integer.toString(selectedHour));
-                            editor.putString("minute", Integer.toString(selectedMinute));
-                            editor.putInt("hourInt", selectedHour);
-                            editor.putInt("minuteInt", selectedMinute);
-                            editor.putBoolean("isReminderSet", true);
-                            editor.apply();
-
-                            isReminderSet = true;
-                            notificationInfo.setText(getString(R.string.reminder_on));
-                            notificationIcon.setImageResource(R.drawable.ic_notifications);
-
-                            showInfo();
-                            notificationHour.setText(setNotificationInfo
-                                    (selectedHour, selectedMinute));
-                        }
-                    },
-                    hour, minute, true);
-
-            mTimePicker.setTitle(getString(R.string.reminder_set_time));
-            mTimePicker.show();
+            selectTime().show();
         }
     }
 
-    public void createNewNotification() {
-        final SharedPreferences.Editor editor = preferences.edit();
-
-        Calendar mcurrentTime = Calendar.getInstance();
-        final int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        final int minute = mcurrentTime.get(Calendar.MINUTE);
+    public Dialog selectTime() {
+        Calendar mCurrentTime = Calendar.getInstance();
+        final int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+        final int minute = mCurrentTime.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker = new TimePickerDialog(getActivity(),
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker timePicker,
-                                          int selectedHour,
-                                          int selectedMinute) {
-                        ReminderEventReceiver reminderEventReceiver
-                                = new ReminderEventReceiver(selectedHour, selectedMinute, 1001);
-                        reminderEventReceiver.setupAlarm(getActivity());
-
-                        editor.putString("hour", Integer.toString(selectedHour));
-                        editor.putString("minute", Integer.toString(selectedMinute));
-                        editor.putInt("hourInt", selectedHour);
-                        editor.putInt("minuteInt", selectedMinute);
-                        editor.putBoolean("isReminderSet", true);
-                        editor.apply();
-
-                        isReminderSet = true;
-                        notificationInfo.setText(getString(R.string.reminder_on));
-                        notificationIcon.setImageResource(R.drawable.ic_notifications);
-
-                        showInfo();
-                        notificationHour.setText(setNotificationInfo(selectedHour, selectedMinute));
-                        assert (getActivity()) != null;
-                        ((MainActivity) getActivity()).setCurrentItem(1);
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        selectDay(selectedHour, selectedMinute).show();
                     }
                 },
                 hour, minute, true);
         mTimePicker.setTitle(getString(R.string.reminder_set_time));
-        mTimePicker.show();
+        mTimePicker.setButton(TimePickerDialog.BUTTON_POSITIVE, "Dalej", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        return mTimePicker;
+    }
+
+    public Dialog selectDay(final int selectedHour, final int selectedMinute) {
+        final NumberPicker numberPicker = new NumberPicker(getActivity());
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(31);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Wybierz dzień miesiąca");
+        builder.setView(numberPicker);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                final SharedPreferences.Editor editor = preferences.edit();
+                int selectedDay = numberPicker.getValue();
+                editor.putInt("dayInt", selectedDay);
+                editor.putInt("hourInt", selectedHour);
+                editor.putInt("minuteInt", selectedMinute);
+                editor.putBoolean("isReminderSet", true);
+                editor.apply();
+
+                isReminderSet = true;
+
+                setReminderAndInfo(selectedDay, selectedHour, selectedMinute);
+            }
+        });
+        builder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        return builder.create();
+    }
+
+    void setReminderAndInfo(int day, int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+
+        notificationInfo.setText(getString(R.string.reminder_on));
+        notificationIcon.setImageResource(R.drawable.ic_notifications);
+
+        showInfo();
+        notificationHour.setText(setNotificationInfo(day, hour, minute));
     }
 }

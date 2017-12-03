@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
                         sendingSmsSuccess(getString(R.string.send_ok)).show();
 
                         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-                        String currentDateandTime = sdf.format(new Date());
+                        String currentDateAndTime = sdf.format(new Date());
                         final DbHandler dbHandler = new DbHandler(getApplication());
                         Item item = new Item();
-                        item.setDate(currentDateandTime);
+                        item.setDate(currentDateAndTime);
                         item.setMeterReading(fragmentFirst.meterReading.getText().toString());
                         item.setBankAccountNumber(fragmentFirst.bankAccountNumber);
                         item.setPhoneNumber(PhoneNumber.phoneNumber);
@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage(message)
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-                        fragmentSecond.createNewNotification();
+                        setCurrentItem(1);
+                        fragmentSecond.manageNotifications();
                     }
                 });
         builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {

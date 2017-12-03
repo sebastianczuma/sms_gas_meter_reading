@@ -26,7 +26,6 @@ public class SetBankAccountNumber extends AppCompatActivity {
     EditText newBankAccountNumber;
     EditText newNumberName;
     SharedPreferences preferences;
-    //String bankAccountNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

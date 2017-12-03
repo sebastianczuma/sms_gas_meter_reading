@@ -1,9 +1,5 @@
 package com.scz.odczytgazomierza.Database;
 
-/**
- * Created by sebastianczuma on 18.08.2016.
- */
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

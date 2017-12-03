@@ -17,13 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.scz.odczytgazomierza.Activities.StartActivity"
+            android:name=".Activities.StartActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.scz.odczytgazomierza.Activities.SetBankAccountNumber"
+            android:name=".Activities.SetBankAccountNumber"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.scz.odczytgazomierza.Activities.SplashActivity"
+            android:name=".Activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Splash"
             android:windowSoftInputMode="stateHidden">
@@ -34,31 +34,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.scz.odczytgazomierza.Activities.WhereToFind"
+            android:name=".Activities.WhereToFind"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.scz.odczytgazomierza.Activities.HistoricalData"
+            android:name=".Activities.HistoricalData"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.scz.odczytgazomierza.Activities.MainActivity"
+            android:name=".Activities.MainActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".Activities.ListBankAccountNumber" />
+        <activity android:name=".Activities.EditBankAccountNumber" />
 
-        <service
-            android:name="com.scz.odczytgazomierza.NotificationReminder.ReminderIntentService"
-            android:enabled="true"
-            android:exported="false" />
-
-        <receiver android:name="com.scz.odczytgazomierza.NotificationReminder.ReminderEventReceiver" />
-        <receiver android:name="com.scz.odczytgazomierza.NotificationReminder.ReminderServiceStarterReceiver">
+        <receiver android:name=".NotificationReminder.AlarmReceiver" />
+        <receiver
+            android:name=".NotificationReminder.BootReceiver"
+            android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
-                <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.scz.odczytgazomierza.Activities.ListBankAccountNumber" />
-        <activity android:name="com.scz.odczytgazomierza.Activities.EditBankAccountNumber"></activity>
     </application>
 
 </manifest>
