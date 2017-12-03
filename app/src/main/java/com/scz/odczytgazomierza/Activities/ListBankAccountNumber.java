@@ -67,7 +67,6 @@ public class ListBankAccountNumber extends AppCompatActivity {
                     i.getId(),
                     i.getBankAccountNumber(),
                     i.getName()));
-            Log.e("List db2", i.getBankAccountNumber());
         }
         dbHandler2.close();
         return allItems;

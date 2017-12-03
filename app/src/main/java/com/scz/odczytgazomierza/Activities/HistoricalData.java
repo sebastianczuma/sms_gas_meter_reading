@@ -55,7 +55,6 @@ public class HistoricalData extends AppCompatActivity {
                     i.getMeterReading(),
                     i.getBankAccountNumber(),
                     i.getPhoneNumber()));
-            Log.e("hist db", i.getBankAccountNumber());
         }
         dbHandler.close();
         return allItems;

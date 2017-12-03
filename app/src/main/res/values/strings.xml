@@ -9,7 +9,7 @@
     <string name="permission_info_2">pozwól aplikacji na wysyłanie wiadomości</string>
 
     <string name="set_bank_account_number">Dodaj numer rachunku</string>
-    <string name="edit_bank_account_number">Edytuj umer rachunku</string>
+    <string name="edit_bank_account_number">Edytuj numer rachunku</string>
     <string name="bank_account_info">Podaj numer indywidualnego rachunku bankowego odbiorcy z faktury w celu identyfikacji klienta - 26 cyfr.\nNazwa jest opcjonalna.</string>
     <string name="where_to_find">Gdzie znajdę numer rachunku?</string>
 
@@ -77,7 +77,7 @@
     <!-- FragmentFirst -->
     <string name="sending">Wysyłanie</string>
     <string name="sending_in_progress">Przesyłanie stanu gazomierza. Proszę, czekaj</string>
-    <string name="choose_another">Wybierz inny</string>
+    <string name="list_of_numbers">Lista numerów</string>
 
     <string name="no_sim_ff">Nie wykryto karty SIM. Stan licznika nie został przesłany.</string>
     <string name="network_locked_ff">Sieć zablokowana.  Stan licznika nie został przesłany</string>

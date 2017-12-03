@@ -40,13 +40,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         holder.date.setText(itemList.get(position).getDate());
         holder.meterReading.setText(itemList.get(position).getMeterReading());
 
-        String accountNumber = itemList.get(position).getBankAccountNumber();
-        holder.number.setText(accountNumber);
+        String bankAccountNumber = itemList.get(position).getBankAccountNumber();
 
-        accountNumber = accountNumber.replace(" ", "");
+        for (int i = 2; i < bankAccountNumber.length(); i = i + 5) {
+            bankAccountNumber = new StringBuilder(bankAccountNumber).insert(i, " ").toString();
+        }
+
+        holder.number.setText(bankAccountNumber);
+
+        bankAccountNumber = bankAccountNumber.replace(" ", "");
+
 
         DbHandler2 dbHandler2 = new DbHandler2(holder.number.getContext());
-        String fName = dbHandler2.searchName(accountNumber);
+        String fName = dbHandler2.searchName(bankAccountNumber);
         holder.name.setText(fName);
     }
 

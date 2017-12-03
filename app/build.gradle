@@ -7,8 +7,8 @@ android {
         applicationId "com.sebastianczuma.odczytgazomierza"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 11
-        versionName "11"
+        versionCode 14
+        versionName "14"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

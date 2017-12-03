@@ -9,8 +9,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -175,7 +177,11 @@ public class MainActivity extends AppCompatActivity {
                     backgroundBlur.unblurBackground();
                     isNextBlurRequested = "";
 
-                    if (!fragmentSecond.isReminderSet) {
+                    SharedPreferences preferences =
+                            PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    int askedAllready = preferences.getInt("askedAllready", 0);
+
+                    if (!fragmentSecond.isReminderSet && askedAllready == 0) {
                         askUserToTurnOnNotifications(getString(R.string.notification_ask)).show();
                     }
                 }
@@ -190,6 +196,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         MainActivity.isNextBlurRequested = message;
+
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("askedAllready", 1);
+        editor.apply();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.notifications))
