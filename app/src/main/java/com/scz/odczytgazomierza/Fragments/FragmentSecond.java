@@ -1,15 +1,11 @@
 package com.scz.odczytgazomierza.Fragments;
 
-/**
- * Created by sebastianczuma on 02.05.2016.
- */
-
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +41,7 @@ public class FragmentSecond extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_second, container, false);
 
@@ -88,6 +84,7 @@ public class FragmentSecond extends Fragment {
         scroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                assert (getActivity()) != null;
                 ((MainActivity) getActivity()).setCurrentItem(0);
             }
         });
@@ -139,13 +136,6 @@ public class FragmentSecond extends Fragment {
 
             hideInfo();
         } else {
-            if (MainActivity.isNextBlurRequested.equals("")) {
-                ((MainActivity) getActivity()).backgroundBlur.blurBackgroundWithoutPrepare();
-            }
-
-            MainActivity.isNextBlurRequested =
-                    getString(R.string.manage_notifications_blur_request);
-
             Calendar mcurrentTime = Calendar.getInstance();
             final int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
             final int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -177,16 +167,6 @@ public class FragmentSecond extends Fragment {
                     },
                     hour, minute, true);
 
-            mTimePicker.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    if (MainActivity.isNextBlurRequested
-                            .equals(getString(R.string.manage_notifications_blur_request))) {
-                        ((MainActivity) getActivity()).backgroundBlur.unblurBackground();
-                        MainActivity.isNextBlurRequested = "";
-                    }
-                }
-            });
             mTimePicker.setTitle(getString(R.string.reminder_set_time));
             mTimePicker.show();
         }
@@ -194,11 +174,6 @@ public class FragmentSecond extends Fragment {
 
     public void createNewNotification() {
         final SharedPreferences.Editor editor = preferences.edit();
-        if (MainActivity.isNextBlurRequested.equals("")) {
-            ((MainActivity) getActivity()).backgroundBlur.blurBackgroundWithoutPrepare();
-        }
-
-        MainActivity.isNextBlurRequested = getString(R.string.create_new_notifications);
 
         Calendar mcurrentTime = Calendar.getInstance();
         final int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -226,21 +201,11 @@ public class FragmentSecond extends Fragment {
 
                         showInfo();
                         notificationHour.setText(setNotificationInfo(selectedHour, selectedMinute));
+                        assert (getActivity()) != null;
                         ((MainActivity) getActivity()).setCurrentItem(1);
                     }
                 },
                 hour, minute, true);
-
-        mTimePicker.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (MainActivity.isNextBlurRequested
-                        .equals(getString(R.string.create_new_notifications))) {
-                    ((MainActivity) getActivity()).backgroundBlur.unblurBackground();
-                    MainActivity.isNextBlurRequested = "";
-                }
-            }
-        });
         mTimePicker.setTitle(getString(R.string.reminder_set_time));
         mTimePicker.show();
     }

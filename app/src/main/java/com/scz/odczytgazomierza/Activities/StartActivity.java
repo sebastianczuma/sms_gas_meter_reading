@@ -1,7 +1,6 @@
 package com.scz.odczytgazomierza.Activities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,18 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.R;
 
 public class StartActivity extends AppCompatActivity {
     final int PERMISSION_REQUEST_CODE = 1;
-    BackgroundBlur backgroundBlur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +34,6 @@ public class StartActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
-
-        View SCREEN = findViewById(R.id.activity_start_relative_layout);
-        ImageView SCREEN_OVERLAYING_IMAGE = findViewById(R.id.image_for_blur);
         Button grantPermissions = findViewById(R.id.grant_permission);
         TextView text = findViewById(R.id.text);
 
@@ -56,8 +48,6 @@ public class StartActivity extends AppCompatActivity {
         } else {
             text.setText(Html.fromHtml(permissionInfo1 + " " + phoneNumber + " " + permissionInfo2));
         }
-
-        backgroundBlur = new BackgroundBlur(SCREEN, SCREEN_OVERLAYING_IMAGE, this);
 
         grantPermissions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +80,6 @@ public class StartActivity extends AppCompatActivity {
                 String[] permissions = {Manifest.permission.SEND_SMS};
 
                 requestPermissions(permissions, PERMISSION_REQUEST_CODE);
-                backgroundBlur.blurBackgroundWithoutPrepare();
             } else {
                 // Permisson already granted
                 checkAccountNumber();
@@ -102,7 +91,6 @@ public class StartActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permission,
                                            @NonNull int[] grantResults) {
-        backgroundBlur.unblurBackground();
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -160,22 +148,6 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private Dialog userInfo(String message) {
-        final Activity activity = this;
-        final View content = activity.findViewById(android.R.id.content).getRootView();
-        if (content.getWidth() > 0) {
-            backgroundBlur.blurBackgroundWithoutPrepare();
-        } else {
-            content.getViewTreeObserver().addOnGlobalLayoutListener(
-                    new ViewTreeObserver.OnGlobalLayoutListener() {
-                        @Override
-                        public void onGlobalLayout() {
-                            backgroundBlur.blurBackgroundWithoutPrepare();
-                            content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        }
-                    });
-
-        }
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.attention))
                 .setMessage(message)
@@ -186,7 +158,6 @@ public class StartActivity extends AppCompatActivity {
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
-                backgroundBlur.unblurBackground();
                 finish();
             }
         });

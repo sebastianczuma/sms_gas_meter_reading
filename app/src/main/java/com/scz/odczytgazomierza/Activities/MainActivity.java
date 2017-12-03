@@ -21,10 +21,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.Database.DbHandler;
 import com.scz.odczytgazomierza.Fragments.FragmentFirst;
 import com.scz.odczytgazomierza.Fragments.FragmentSecond;
@@ -38,9 +35,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public static String isNextBlurRequested = "";
     public PendingIntent sentPendingIntent;
-    public BackgroundBlur backgroundBlur;
     public ProgressDialog progressDialog;
     public FragmentSecond fragmentSecond;
     private FragmentFirst fragmentFirst;
@@ -55,10 +50,6 @@ public class MainActivity extends AppCompatActivity {
         checkIfSmsSentReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context arg0, Intent arg1) {
-                if (isNextBlurRequested.equals("Wysyłanie")) {
-                    backgroundBlur.unblurBackground();
-                    isNextBlurRequested = "";
-                }
                 progressDialog.dismiss();
 
                 int resultCode = getResultCode();
@@ -121,21 +112,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentFirst = new FragmentFirst();
         fragmentSecond = new FragmentSecond();
 
-        RelativeLayout SCREEN = findViewById(R.id.activity_main_relative_layout);
-        ImageView SCREEN_OVERLAYING_IMAGE = findViewById(R.id.image_for_blur);
-
-        backgroundBlur = new BackgroundBlur(SCREEN, SCREEN_OVERLAYING_IMAGE, this);
-
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
     }
 
     private Dialog userInfo(final String message) {
-        if (isNextBlurRequested.equals("")) {
-            backgroundBlur.blurBackgroundWithoutPrepare();
-        }
-
-        isNextBlurRequested = message;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.attention))
@@ -144,24 +125,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (isNextBlurRequested.equals(message)) {
-                    backgroundBlur.unblurBackground();
-                    isNextBlurRequested = "";
-                }
-            }
-        });
         return builder.create();
     }
 
     private Dialog sendingSmsSuccess(final String message) {
-        if (isNextBlurRequested.equals("")) {
-            backgroundBlur.blurBackgroundWithoutPrepare();
-        }
-
-        isNextBlurRequested = message;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.success))
@@ -173,17 +140,12 @@ public class MainActivity extends AppCompatActivity {
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
-                if (isNextBlurRequested.equals(message)) {
-                    backgroundBlur.unblurBackground();
-                    isNextBlurRequested = "";
+                SharedPreferences preferences =
+                        PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                int askedAllready = preferences.getInt("askedAllready", 0);
 
-                    SharedPreferences preferences =
-                            PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    int askedAllready = preferences.getInt("askedAllready", 0);
-
-                    if (!fragmentSecond.isReminderSet && askedAllready == 0) {
-                        askUserToTurnOnNotifications(getString(R.string.notification_ask)).show();
-                    }
+                if (!fragmentSecond.isReminderSet && askedAllready == 0) {
+                    askUserToTurnOnNotifications(getString(R.string.notification_ask)).show();
                 }
             }
         });
@@ -191,12 +153,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Dialog askUserToTurnOnNotifications(final String message) {
-        if (MainActivity.isNextBlurRequested.equals("")) {
-            backgroundBlur.blurBackgroundWithoutPrepare();
-        }
-
-        MainActivity.isNextBlurRequested = message;
-
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         SharedPreferences.Editor editor = preferences.edit();
@@ -208,10 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage(message)
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        if (MainActivity.isNextBlurRequested.equals(message)) {
-                            backgroundBlur.unblurBackground();
-                            MainActivity.isNextBlurRequested = "";
-                        }
+
                         fragmentSecond.createNewNotification();
                     }
                 });
@@ -219,15 +172,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (MainActivity.isNextBlurRequested.equals(message)) {
-                    backgroundBlur.unblurBackground();
-                    MainActivity.isNextBlurRequested = "";
-                }
             }
         });
         return builder.create();

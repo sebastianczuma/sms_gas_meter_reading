@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.telephony.SmsManager;
@@ -25,13 +26,8 @@ import android.widget.TextView;
 import com.scz.odczytgazomierza.Activities.EditBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.ListBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.MainActivity;
-import com.scz.odczytgazomierza.Database.DbHandler;
 import com.scz.odczytgazomierza.Interfaces.PhoneNumber;
 import com.scz.odczytgazomierza.R;
-import com.scz.odczytgazomierza.RecyclerView.Item;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class FragmentFirst extends Fragment implements PhoneNumber {
     public EditText meterReading;
@@ -44,7 +40,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_first, container, false);
 
@@ -124,12 +120,6 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
     private void sendSMS() {
         if (doesSimExists()) {
             try {
-                if (MainActivity.isNextBlurRequested.equals("")) {
-                    ((MainActivity) getActivity()).backgroundBlur.blurBackgroundWithoutPrepare();
-                }
-
-                MainActivity.isNextBlurRequested = getString(R.string.sending);
-
                 ((MainActivity) getActivity()).progressDialog = ProgressDialog.show(
                         getActivity(), "", getString(R.string.sending_in_progress), true);
 
@@ -173,12 +163,6 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
     }
 
     private Dialog userPleaseConfirm(final String message, final String reading) {
-        if (MainActivity.isNextBlurRequested.equals("")) {
-            ((MainActivity) getActivity()).backgroundBlur.blurBackgroundWithoutPrepare();
-        }
-
-        MainActivity.isNextBlurRequested = message;
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -204,31 +188,13 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
                     }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
                 }
             });
         }
-
-
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (MainActivity.isNextBlurRequested.equals(message)) {
-                    ((MainActivity) getActivity()).backgroundBlur.unblurBackground();
-                    MainActivity.isNextBlurRequested = "";
-                }
-            }
-        });
         return builder.create();
     }
 
     private Dialog userInfo(final String message) {
-        if (MainActivity.isNextBlurRequested.equals("")) {
-            ((MainActivity) getActivity()).backgroundBlur.blurBackgroundWithoutPrepare();
-        }
-
-        MainActivity.isNextBlurRequested = message;
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.attention))
                 .setMessage(message)
@@ -236,15 +202,6 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (MainActivity.isNextBlurRequested.equals(message)) {
-                    ((MainActivity) getActivity()).backgroundBlur.unblurBackground();
-                    MainActivity.isNextBlurRequested = "";
-                }
-            }
-        });
         return builder.create();
     }
 }

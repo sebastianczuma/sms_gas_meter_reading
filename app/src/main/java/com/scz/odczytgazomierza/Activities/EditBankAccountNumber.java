@@ -15,23 +15,18 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import com.scz.odczytgazomierza.BackgroundBlur;
 import com.scz.odczytgazomierza.Database.DbHandler2;
 import com.scz.odczytgazomierza.R;
 import com.scz.odczytgazomierza.RecyclerView2.Item2;
 
 public class EditBankAccountNumber extends AppCompatActivity {
-    public static String isNextBlurRequested = "";
     Button setBankAccountNumber;
     Button whereToFind;
     EditText newBankAccountNumber;
     EditText newNumberName;
     SharedPreferences preferences;
     String oldBankAccountNumber;
-    BackgroundBlur backgroundBlur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +43,7 @@ public class EditBankAccountNumber extends AppCompatActivity {
         newBankAccountNumber = findViewById(R.id.bank_account_number_input);
         newNumberName = findViewById(R.id.bank_account_name_input);
 
-        RelativeLayout SCREEN = findViewById(R.id.activity_set_bank_account_number_relative_layout);
-        ImageView SCREEN_OVERLAYING_IMAGE = findViewById(R.id.image_for_blur);
-
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        backgroundBlur = new BackgroundBlur(SCREEN, SCREEN_OVERLAYING_IMAGE, this);
 
         setBankAccountNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,11 +169,6 @@ public class EditBankAccountNumber extends AppCompatActivity {
     }
 
     private Dialog userInfo(final String message) {
-        if (isNextBlurRequested.equals("")) {
-            backgroundBlur.blurBackgroundWithoutPrepare();
-        }
-
-        isNextBlurRequested = message;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.attention))
@@ -192,15 +177,6 @@ public class EditBankAccountNumber extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (isNextBlurRequested.equals(message)) {
-                    backgroundBlur.unblurBackground();
-                    isNextBlurRequested = "";
-                }
-            }
-        });
         return builder.create();
     }
 }

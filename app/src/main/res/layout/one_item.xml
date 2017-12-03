@@ -10,9 +10,9 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
         android:text="Licznik 1"
         android:textColor="#fff"
         android:textSize="18sp"
@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:text="12 3456 7890 1234 5678 9012 3456"
+        android:text="@string/bank_account_number_example"
         android:textColor="#fff"
         android:textSize="18sp" />
 
