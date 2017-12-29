@@ -169,19 +169,19 @@ public class FragmentSecond extends Fragment {
                 },
                 hour, minute, true);
         mTimePicker.setTitle(getString(R.string.reminder_set_time));
-        mTimePicker.setButton(TimePickerDialog.BUTTON_POSITIVE, "Dalej", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
         return mTimePicker;
     }
 
     public Dialog selectDay(final int selectedHour, final int selectedMinute) {
         final NumberPicker numberPicker = new NumberPicker(getActivity());
+        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(31);
+
+        final Calendar c = Calendar.getInstance();
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+        numberPicker.setValue(currentDay);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Wybierz dzień miesiąca");

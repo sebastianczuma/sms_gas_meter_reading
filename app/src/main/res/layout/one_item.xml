@@ -15,7 +15,7 @@
         android:layout_marginRight="5dp"
         android:text="Licznik 1"
         android:textColor="#fff"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textStyle="bold" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_marginRight="5dp"
         android:text="@string/bank_account_number_example"
         android:textColor="#fff"
-        android:textSize="18sp" />
+        android:textSize="18dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:layout_marginTop="5dp"
             android:text="00:00 00.00.0000"
             android:textColor="#fff"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/meter_reading"
@@ -54,7 +54,7 @@
             android:layout_toStartOf="@+id/unit"
             android:text="00000"
             android:textColor="#fff"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
         <TextView
@@ -68,6 +68,6 @@
             android:layout_marginTop="5dp"
             android:text="@string/m3"
             android:textColor="#e4555f"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
     </RelativeLayout>
 </LinearLayout>

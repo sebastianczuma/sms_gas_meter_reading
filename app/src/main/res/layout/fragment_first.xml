@@ -14,21 +14,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
         android:text="@string/meter_reading"
         android:textColor="@color/dark_blue"
-        android:textSize="26sp" />
+        android:textSize="26dp" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
         android:text="@string/meter_reading_info"
-        android:textSize="16sp" />
+        android:textSize="17dp" />
 
     <ImageButton
         android:id="@+id/next_fragment"
@@ -45,8 +45,7 @@
         android:id="@+id/meter_reading_input"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/next_fragment"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:background="@drawable/edit_text_dark_blue"
         android:digits="0123456789"
         android:ems="10"
@@ -57,7 +56,7 @@
         android:paddingEnd="55dp"
         android:paddingStart="0dp"
         android:textColor="#fff"
-        android:textSize="22sp" />
+        android:textSize="22dp" />
 
     <TextView
         android:id="@+id/unit"
@@ -71,7 +70,7 @@
         android:paddingStart="0dp"
         android:text="@string/m3"
         android:textColor="#e4555f"
-        android:textSize="22sp" />
+        android:textSize="22dp" />
 
     <Button
         android:id="@+id/send"
@@ -81,7 +80,7 @@
         android:background="@drawable/button_red"
         android:text="@string/send"
         android:textColor="#fff"
-        android:textSize="16sp" />
+        android:textSize="17dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -95,10 +94,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/bank_account_number_info"
             android:layout_alignStart="@+id/bank_account_number"
-            android:layout_marginBottom="10dp"
-            android:text=""
+            android:text="pierwszy"
             android:textColor="@color/dark_blue"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/bank_account_number_info"
@@ -107,7 +105,7 @@
             android:layout_above="@+id/bank_account_number"
             android:layout_alignStart="@+id/bank_account_number"
             android:text="@string/bank_account_number_info"
-            android:textSize="16sp" />
+            android:textSize="17dp" />
 
         <TextView
             android:id="@+id/bank_account_number"
@@ -117,7 +115,7 @@
             android:layout_marginBottom="10dp"
             android:text="@string/bank_account_number_example"
             android:textColor="@color/dark_blue"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/edit"
@@ -128,7 +126,7 @@
             android:background="@android:color/transparent"
             android:text="@string/edit_number"
             android:textColor="@color/orange"
-            android:textSize="16sp" />
+            android:textSize="17dp" />
 
         <Button
             android:id="@+id/choose"
@@ -139,6 +137,6 @@
             android:background="@android:color/transparent"
             android:text="@string/list_of_numbers"
             android:textColor="@color/orange"
-            android:textSize="16sp" />
+            android:textSize="17dp" />
     </RelativeLayout>
 </RelativeLayout>

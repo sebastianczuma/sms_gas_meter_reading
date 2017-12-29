@@ -19,7 +19,7 @@
         android:paddingRight="16dp"
         android:paddingTop="35dp"
         android:text="@string/where_to_find_text"
-        android:textSize="16sp" />
+        android:textSize="17dp" />
 
     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
         android:id="@+id/faktura"

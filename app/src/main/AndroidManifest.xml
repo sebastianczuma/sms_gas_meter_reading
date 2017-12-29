@@ -42,8 +42,10 @@
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.ListBankAccountNumber" />
-        <activity android:name=".Activities.EditBankAccountNumber" />
+        <activity android:name=".Activities.ListBankAccountNumber"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".Activities.EditBankAccountNumber"
+            android:screenOrientation="portrait"  />
 
         <receiver android:name=".NotificationReminder.AlarmReceiver" />
         <receiver
