@@ -18,13 +18,9 @@ import java.util.Calendar;
  */
 
 public class BootReceiver extends BroadcastReceiver {
-    private static final String TAG = BootReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, "onReceive - Intent Action: " + intent.getAction());
-
-        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
             boolean isReminderSet = preferences.getBoolean("isReminderSet", false);
@@ -38,11 +34,11 @@ public class BootReceiver extends BroadcastReceiver {
                 calendar.set(Calendar.MINUTE, minuteInt);
 
                 AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                Intent intent1 = new Intent(context, MainActivity.class);
+                Intent intent1 = new Intent(context, AlarmReceiver.class);
                 PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 1001, intent1, 0);
 
                 alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
-            }
+
         }
     }
 }

@@ -32,14 +32,14 @@
     <!-- Buttons -->
     <string name="continue_button">Kontynuuj</string>
     <string name="edit_number">Edytuj numer</string>
-    <string name="send">Wyślij</string>
 
     <!-- Universal -->
     <string name="ok">OK</string>
-    <string name="cancel">ANULUJ</string>
+    <string name="cancel">Anuluj</string>
     <string name="confirm">Potwierdzenie</string>
     <string name="attention">Uwaga</string>
-    <string name="big_send">WYŚLIJ</string>
+    <string name="send">Wyślij</string>
+    <string name="next">Dalej</string>
 
     <!-- StartActivity -->
     <string name="no_sim">Nie wykryto karty SIM. Aplikacja zostanie zamknięta.</string>
@@ -90,10 +90,8 @@
     <string name="reminder_text">Przypomnienia będą wyświetlane pierwszego dnia miesiąca o</string>
     <string name="reminder_off">Przypomnienia są wyłączone</string>
     <string name="reminder_on">Przypomnienia są włączone</string>
-    <string name="reminder_set_time">Wybierz czas przypomnienia</string>
-
-    <string name="manage_notifications_blur_request">manage_notifications_blur_request</string>
-    <string name="create_new_notifications">create_new_notifications</string>
+    <string name="reminder_set_time">Wybierz godzinę</string>
+    <string name="reminder_set_day">Wybierz dzień miesiąca</string>
 
     <string name="information">Informacje</string>
     <string name="historical_data">Dane historyczne</string>
@@ -101,5 +99,5 @@
 
     <!-- Notification -->
     <string name="notification_title">Przypomnienie o odczycie</string>
-    <string name="notification_text">Dotknij aby podać stan licznika</string>
+    <string name="notification_text">Dotknij, by podać stan licznika</string>
 </resources>

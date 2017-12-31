@@ -37,5 +37,5 @@
         android:layout_margin="5dp"
         android:text="@string/bank_account_number_example"
         android:textColor="#fff"
-        android:textSize="18dp" />
+        android:textSize="17dp" />
 </LinearLayout>

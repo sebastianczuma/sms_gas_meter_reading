@@ -168,7 +168,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             builder.setTitle(getString(R.string.confirm))
                     .setMessage(Html.fromHtml(message + " " + reading + " " + "m<sup>3</sup>\t", Html.FROM_HTML_MODE_LEGACY))
-                    .setPositiveButton(getString(R.string.big_send), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             sendSMS();
                         }
@@ -181,7 +181,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
         } else {
             builder.setTitle(getString(R.string.confirm))
                     .setMessage(Html.fromHtml(message + " " + reading + " " + "m<sup>3</sup>\t"))
-                    .setPositiveButton(getString(R.string.big_send), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             sendSMS();
                         }

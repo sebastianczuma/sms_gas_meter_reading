@@ -152,27 +152,11 @@ public class FragmentSecond extends Fragment {
 
             hideInfo();
         } else {
-            selectTime().show();
+            selectDay().show();
         }
     }
 
-    public Dialog selectTime() {
-        Calendar mCurrentTime = Calendar.getInstance();
-        final int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
-        final int minute = mCurrentTime.get(Calendar.MINUTE);
-        TimePickerDialog mTimePicker = new TimePickerDialog(getActivity(),
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        selectDay(selectedHour, selectedMinute).show();
-                    }
-                },
-                hour, minute, true);
-        mTimePicker.setTitle(getString(R.string.reminder_set_time));
-        return mTimePicker;
-    }
-
-    public Dialog selectDay(final int selectedHour, final int selectedMinute) {
+    public Dialog selectDay() {
         final NumberPicker numberPicker = new NumberPicker(getActivity());
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker.setMinValue(1);
@@ -184,36 +168,49 @@ public class FragmentSecond extends Fragment {
         numberPicker.setValue(currentDay);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Wybierz dzień miesiąca");
+        builder.setTitle(getString(R.string.reminder_set_day));
         builder.setView(numberPicker);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.next), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final SharedPreferences.Editor editor = preferences.edit();
-                int selectedDay = numberPicker.getValue();
-                editor.putInt("dayInt", selectedDay);
-                editor.putInt("hourInt", selectedHour);
-                editor.putInt("minuteInt", selectedMinute);
-                editor.putBoolean("isReminderSet", true);
-                editor.apply();
-
-                isReminderSet = true;
-
-                setReminderAndInfo(selectedDay, selectedHour, selectedMinute);
-            }
-        });
-        builder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                selectTime(numberPicker.getValue()).show();
             }
         });
         return builder.create();
     }
 
+    public Dialog selectTime(final int selectedDay) {
+        Calendar mCurrentTime = Calendar.getInstance();
+        final int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+        final int minute = mCurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker = new TimePickerDialog(getActivity(),
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        if (timePicker.isShown()) {
+                            //selectDay(selectedHour, selectedMinute).show();
+                            final SharedPreferences.Editor editor = preferences.edit();
+                            editor.putInt("dayInt", selectedDay);
+                            editor.putInt("hourInt", selectedHour);
+                            editor.putInt("minuteInt", selectedMinute);
+                            editor.putBoolean("isReminderSet", true);
+                            editor.apply();
+
+                            isReminderSet = true;
+
+                            setReminderAndInfo(selectedDay, selectedHour, selectedMinute);
+                        }
+                    }
+                },
+                hour, minute, true);
+        //mTimePicker.setTitle(getString(R.string.reminder_set_time));
+        return mTimePicker;
+    }
+
     void setReminderAndInfo(int day, int hour, int minute) {
         Calendar calendar = Calendar.getInstance();
+
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
