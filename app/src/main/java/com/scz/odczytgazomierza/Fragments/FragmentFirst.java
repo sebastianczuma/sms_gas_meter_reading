@@ -1,8 +1,6 @@
 package com.scz.odczytgazomierza.Fragments;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +10,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,14 +22,12 @@ import android.widget.TextView;
 import com.scz.odczytgazomierza.Activities.EditBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.ListBankAccountNumber;
 import com.scz.odczytgazomierza.Activities.MainActivity;
-import com.scz.odczytgazomierza.Interfaces.PhoneNumber;
 import com.scz.odczytgazomierza.R;
 
-public class FragmentFirst extends Fragment implements PhoneNumber {
+public class FragmentFirst extends Fragment {
     public EditText meterReading;
     public String bankAccountNumber;
     String smsBody;
-
 
     public FragmentFirst() {
         // Required empty public constructor
@@ -117,51 +111,6 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
         }
     }
 
-    private void sendSMS() {
-        if (doesSimExists()) {
-            try {
-                ((MainActivity) getActivity()).progressDialog = ProgressDialog.show(
-                        getActivity(), "", getString(R.string.sending_in_progress), true);
-
-                SmsManager smsMgr = SmsManager.getDefault();
-                smsMgr.sendTextMessage(phoneNumber, null, smsBody,
-                        ((MainActivity) getActivity()).sentPendingIntent, null);
-
-            } catch (Exception e) {
-                userInfo(getString(R.string.send_error_generic));
-            }
-        }
-    }
-
-    private boolean doesSimExists() {
-        TelephonyManager telephonyManager = (TelephonyManager)
-                getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-        int SIM_STATE = telephonyManager.getSimState();
-
-        if (SIM_STATE == TelephonyManager.SIM_STATE_READY) {
-            return true;
-        } else {
-            switch (SIM_STATE) {
-                case TelephonyManager.SIM_STATE_ABSENT:
-                    userInfo(getString(R.string.no_sim_ff)).show();
-                    break;
-                case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-                    userInfo(getString(R.string.network_locked_ff)).show();
-                    break;
-                case TelephonyManager.SIM_STATE_PIN_REQUIRED:
-                    userInfo(getString(R.string.sim_locked_pin_ff)).show();
-                    break;
-                case TelephonyManager.SIM_STATE_PUK_REQUIRED:
-                    userInfo(getString(R.string.sim_locked_puk_ff)).show();
-                    break;
-                case TelephonyManager.SIM_STATE_UNKNOWN:
-                    userInfo(getString(R.string.sim_unknown_ff)).show();
-                    break;
-            }
-            return false;
-        }
-    }
-
     private Dialog userPleaseConfirm(final String message, final String reading) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -170,12 +119,11 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
                     .setMessage(Html.fromHtml(message + " " + reading + " " + "m<sup>3</sup>\t", Html.FROM_HTML_MODE_LEGACY))
                     .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            sendSMS();
+                            ((MainActivity) getActivity()).checkPermissionsForSmsSendOreo(smsBody);
                         }
                     }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
                 }
             });
         } else {
@@ -183,7 +131,7 @@ public class FragmentFirst extends Fragment implements PhoneNumber {
                     .setMessage(Html.fromHtml(message + " " + reading + " " + "m<sup>3</sup>\t"))
                     .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            sendSMS();
+                            ((MainActivity) getActivity()).checkPermissionsForSmsSendOreo(smsBody);
                         }
                     }).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 @Override

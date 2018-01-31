@@ -57,6 +57,7 @@ public class FragmentSecond extends Fragment {
         RelativeLayout notifications = mView.findViewById(R.id.notification);
         RelativeLayout historicalData = mView.findViewById(R.id.historical_data);
         ImageButton scroll = mView.findViewById(R.id.previous_fragment);
+        TextView privacyPolicy = mView.findViewById(R.id.privacy_policy);
         notificationInfo = mView.findViewById(R.id.notifications_text);
         notificationHour = mView.findViewById(R.id.reminder_text);
         notificationIcon = mView.findViewById(R.id.notifications_icon);
@@ -96,6 +97,13 @@ public class FragmentSecond extends Fragment {
             public void onClick(View view) {
                 assert (getActivity()) != null;
                 ((MainActivity) getActivity()).setCurrentItem(0);
+            }
+        });
+
+        privacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userPrivacyPolicyInfo().show();
             }
         });
 
@@ -222,5 +230,16 @@ public class FragmentSecond extends Fragment {
 
         showInfo();
         notificationHour.setText(setNotificationInfo(day, hour, minute));
+    }
+
+    private Dialog userPrivacyPolicyInfo() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(getString(R.string.privacy_policy_title))
+                .setMessage(getText(R.string.privacy_policy))
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+        return builder.create();
     }
 }

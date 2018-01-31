@@ -114,4 +114,15 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/privacy_policy"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Polityka prywatności"
+        android:textColor="@color/orange"
+        android:textSize="18dp" />
+
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.scz.odczytgazomierza.Activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -10,9 +11,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -20,6 +23,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.telephony.TelephonyManager;
 import android.view.WindowManager;
 
 import com.scz.odczytgazomierza.Database.DbHandler;
@@ -34,14 +38,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    public PendingIntent sentPendingIntent;
+public class MainActivity extends AppCompatActivity implements PhoneNumber {
+    final int PERMISSION_REQUEST_CODE = 1;
     public ProgressDialog progressDialog;
     public FragmentSecond fragmentSecond;
+    private String smsBody = "";
     private FragmentFirst fragmentFirst;
     private ViewPager mViewPager;
     private BroadcastReceiver checkIfSmsSentReceiver;
-    private String SENT = "SMS_SENT";
+    private String SMS_SENT = "SMS_SENT";
 
     @Override
     public void onResume() {
@@ -49,44 +54,45 @@ public class MainActivity extends AppCompatActivity {
 
         checkIfSmsSentReceiver = new BroadcastReceiver() {
             @Override
-            public void onReceive(Context arg0, Intent arg1) {
+            public void onReceive(Context context, Intent intent) {
                 progressDialog.dismiss();
 
-                int resultCode = getResultCode();
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        sendingSmsSuccess(getString(R.string.send_ok)).show();
+                if (intent.getAction().equals(SMS_SENT)) {
+                    switch (getResultCode()) {
+                        case Activity.RESULT_OK:
+                            sendingSmsSuccess(getString(R.string.send_ok)).show();
 
-                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-                        String currentDateAndTime = sdf.format(new Date());
-                        final DbHandler dbHandler = new DbHandler(getApplication());
-                        Item item = new Item();
-                        item.setDate(currentDateAndTime);
-                        item.setMeterReading(fragmentFirst.meterReading.getText().toString());
-                        item.setBankAccountNumber(fragmentFirst.bankAccountNumber);
-                        item.setPhoneNumber(PhoneNumber.phoneNumber);
-                        dbHandler.addItem(item);
-                        dbHandler.close();
+                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+                            String currentDateAndTime = sdf.format(new Date());
+                            final DbHandler dbHandler = new DbHandler(getApplication());
+                            Item item = new Item();
+                            item.setDate(currentDateAndTime);
+                            item.setMeterReading(fragmentFirst.meterReading.getText().toString());
+                            item.setBankAccountNumber(fragmentFirst.bankAccountNumber);
+                            item.setPhoneNumber(PhoneNumber.phoneNumber);
+                            dbHandler.addItem(item);
+                            dbHandler.close();
 
-                        fragmentFirst.meterReading.setText("");
+                            fragmentFirst.meterReading.setText("");
 
-                        break;
-                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                        userInfo(getString(R.string.send_error_generic)).show();
-                        break;
-                    case SmsManager.RESULT_ERROR_NO_SERVICE:
-                        userInfo(getString(R.string.send_error_no_service)).show();
-                        break;
-                    case SmsManager.RESULT_ERROR_NULL_PDU:
-                        userInfo(getString(R.string.send_error_null_pdu)).show();
-                        break;
-                    case SmsManager.RESULT_ERROR_RADIO_OFF:
-                        userInfo(getString(R.string.send_error_radio_off)).show();
-                        break;
+                            break;
+                        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                            userInfo(getString(R.string.send_error_generic)).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_NO_SERVICE:
+                            userInfo(getString(R.string.send_error_no_service)).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_NULL_PDU:
+                            userInfo(getString(R.string.send_error_null_pdu)).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_RADIO_OFF:
+                            userInfo(getString(R.string.send_error_radio_off)).show();
+                            break;
+                    }
                 }
             }
         };
-        registerReceiver(checkIfSmsSentReceiver, new IntentFilter(SENT));
+        registerReceiver(checkIfSmsSentReceiver, new IntentFilter(SMS_SENT));
     }
 
     @Override
@@ -107,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
-        sentPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
-
         fragmentFirst = new FragmentFirst();
         fragmentSecond = new FragmentSecond();
 
@@ -116,8 +120,97 @@ public class MainActivity extends AppCompatActivity {
         setupViewPager(mViewPager);
     }
 
-    private Dialog userInfo(final String message) {
+    public void sendSMS() {
+        if (doesSimExists()) {
+            try {
+                progressDialog = ProgressDialog.show(this, "",
+                        getString(R.string.sending_in_progress), true);
 
+                SmsManager smsMgr = SmsManager.getDefault();
+                PendingIntent sentPendingIntent = PendingIntent.getBroadcast(this,
+                        0, new Intent(SMS_SENT), 0);
+                smsMgr.sendTextMessage(phoneNumber, null, smsBody,
+                        sentPendingIntent, null);
+
+            } catch (Exception e) {
+                userInfo(getString(R.string.send_error_generic));
+            }
+        }
+    }
+
+    public void checkPermissionsForSmsSendOreo(String smsBody) {
+        this.smsBody = smsBody;
+        if (android.os.Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.O) {
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                sendSMS();
+            } else {
+                askForPermissionOreo().show();
+            }
+        } else {
+            sendSMS();
+        }
+    }
+
+    private void requestPermissions() {
+        if (android.os.Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.O) {
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_DENIED) {
+                // Permission  denied
+                String[] permissions = {Manifest.permission.READ_PHONE_STATE};
+
+                requestPermissions(permissions, PERMISSION_REQUEST_CODE);
+            } else {
+                // Permisson already granted
+                sendSMS();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permission,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted
+                    sendSMS();
+                }
+                break;
+            }
+        }
+    }
+
+    private boolean doesSimExists() {
+        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        int SIM_STATE = telephonyManager.getSimState();
+
+        if (SIM_STATE == TelephonyManager.SIM_STATE_READY) {
+            return true;
+        } else {
+            switch (SIM_STATE) {
+                case TelephonyManager.SIM_STATE_ABSENT:
+                    userInfo(getString(R.string.no_sim_ff)).show();
+                    break;
+                case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
+                    userInfo(getString(R.string.network_locked_ff)).show();
+                    break;
+                case TelephonyManager.SIM_STATE_PIN_REQUIRED:
+                    userInfo(getString(R.string.sim_locked_pin_ff)).show();
+                    break;
+                case TelephonyManager.SIM_STATE_PUK_REQUIRED:
+                    userInfo(getString(R.string.sim_locked_puk_ff)).show();
+                    break;
+                case TelephonyManager.SIM_STATE_UNKNOWN:
+                    userInfo(getString(R.string.sim_unknown_ff)).show();
+                    break;
+            }
+            return false;
+        }
+    }
+
+    private Dialog userInfo(final String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.attention))
                 .setMessage(message)
@@ -146,6 +239,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!fragmentSecond.isReminderSet && askedAllready == 0) {
                     askUserToTurnOnNotifications(getString(R.string.notification_ask)).show();
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("askedAllready", 1);
+                    editor.apply();
                 }
             }
         });
@@ -153,12 +249,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Dialog askUserToTurnOnNotifications(final String message) {
-        SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("askedAllready", 1);
-        editor.apply();
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.notifications))
                 .setMessage(message)
@@ -171,10 +261,28 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         });
         return builder.create();
+    }
+
+    private Dialog askForPermissionOreo() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.permission_info_oreo_title))
+                .setMessage(getString(R.string.permission_info_oreo))
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        requestPermissions();
+                    }
+                });
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+
+        });
+        return builder.create();
+
     }
 
     private void setupViewPager(ViewPager mViewPager) {

@@ -7,6 +7,8 @@
     <string name="permission_info">Aby przesłać stan licznika gazu na numer 608 600 608 pozwól aplikacji na wysyłanie wiadomości.</string>
     <string name="permission_info_1">Aby przesłać stan licznika gazu na numer</string>
     <string name="permission_info_2">pozwól aplikacji na wysyłanie wiadomości.</string>
+    <string name="permission_info_oreo_title">Wygląda na to,</string>
+    <string name="permission_info_oreo">że wersja Androida na Twoim telefonie to Oreo. Do wysłania odczytu licznika wymagane jest pozwolenie na wykonywanie połączeń.</string>
 
     <string name="set_bank_account_number">Dodaj numer rachunku</string>
     <string name="edit_bank_account_number">Edytuj numer rachunku</string>
@@ -100,4 +102,44 @@
     <!-- Notification -->
     <string name="notification_title">Przypomnienie o odczycie</string>
     <string name="notification_text">Dotknij, by podać stan licznika</string>
+
+
+    <string name="privacy_policy_title">Polityka prywatności</string>
+    <string name="privacy_policy">Aplikacja "Odczyt gazu SMS" została zbudowana jako darmowa. Jest udostępniona bezpłatnie i przeznaczona do użytku w stanie takim, jaki jest. Autor aplikacji nie ponosi żadnej odpowiedzialności za aplikację lub sposób jej działania.
+\n\n
+Ta strona służy do informowania odwiedzających witrynę o zasadach dotyczących gromadzenia, wykorzystywania i ujawniania danych osobowych, jeśli ktoś zdecydował się skorzystać z oferowanej aplikacji.
+\n\n
+Jeśli zdecydujesz się skorzystać z tej aplikacji, zgadzasz się na zbieranie i wykorzystywanie informacji w związku z tymi zasadami. Dane osobowe, które gromadzimy, są wykorzystywane do świadczenia i ulepszania aplikacji. Twoje dane nie będą wykorzystane ani udostępnione nikomu, z wyjątkiem sytuacji opisanych w niniejszej Polityce prywatności.
+\n\n
+Terminy użyte w niniejszej Polityce prywatności mają takie samo znaczenie jak w Warunkach korzystania z usługi, które są dostępne w aplikacji, chyba że w niniejszej Polityce prywatności określono inaczej.
+\n\n
+<b>Gromadzenie i wykorzystanie informacji</b>
+\n\n
+Aby uzyskać lepsze wrażenia podczas korzystania z tej aplikacji, aplikacja może wymagać od Ciebie dostarczenia pewnych danych osobowych, w tym między innymi numeru klienta PGNiG. Informacje te są przechowywane na urządzeniu i nie są gromadzone w jakikolwiek sposób.
+\n\n
+<b>Dane dziennika</b>
+\n\n
+Za każdym razem, gdy korzystasz z aplikacji, w przypadku błędu w aplikacji zbierane są dane i informacje (za pośrednictwem produktów stron trzecich) w telefonie o nazwie "Dane dziennika". Te dane dziennika mogą zawierać informacje, takie jak adres IP twojego urządzenia ("IP"), nazwa urządzenia, wersja systemu operacyjnego, konfiguracja aplikacji, czas i data korzystania z aplikacji, oraz inne statystyki.
+\n\n
+<b>Cookies</b>
+\n\n
+Pliki cookie to pliki zawierające niewielką ilość danych, która jest powszechnie używana jako anonimowy unikalny identyfikator. Są one wysyłane do przeglądarki z witryny odwiedzanej przez użytkownika i przechowywane w pamięci wewnętrznej urządzenia.
+\n\n
+Ta aplikacja nie wykorzystuje jawnie "plików cookies". Jednak aplikacja może wykorzystywać kod i biblioteki stron trzecich, które używają plików "cookies" do gromadzenia informacji i ulepszania swoich usług. Możesz zaakceptować lub odrzucić te pliki cookie i wiedzieć, kiedy plik cookie jest wysyłany na Twoje urządzenie. Jeśli zdecydujesz się zrezygnować z plików cookie, możesz nie być w stanie korzystać z niektórych funkcji tej aplikacji.
+\n\n
+<b>Bezpieczeństwo</b>
+\n\n
+Aplikacja stara się wykorzystywać komercyjnie akceptowalne sposoby ochrony danych. Należy jednak pamiętać, że żadna metoda transmisji przez Internet lub metoda elektronicznego przechowywania danych nie jest w 100% bezpieczna i niezawodna, dlatego nie można zagwarantować jej całkowitego bezpieczeństwa.
+\n\n
+<b>Odnośniki do innych stron</b>
+\n\n
+Aplikacja może zawierać linki do innych stron. Jeśli klikniesz link strony trzeciej, zostaniesz przekierowany do tej witryny. Należy wtedy zapoznać się z polityką prywatności tych stron. Twórca aplikacji nie ma żadnej kontroli i nie ponosi żadnej odpowiedzialności za zawartość, politykę prywatności lub praktyki stron lub usług stron trzecich.
+\n\n
+<b>Zmiany w polityce prywatności</b>
+\n\n
+Polityka prywatności może być aktualizowana od czasu do czasu. Dlatego zaleca się okresowe sprawdzanie tej strony w poszukiwaniu jakichkolwiek zmian. Wszelkie zmiany w Polityce prywatności zostaną opublikowane na tej stronie. Zmiany wchodzą w życie natychmiast po ich opublikowaniu na tej stronie.
+\n\n
+<b>Kontakt</b>
+\n\n
+Jeśli masz jakieś pytania lub sugestie dotyczące Polityki prywatności, nie wahaj się skontaktować się z analogapks@gmail.com</string>
 </resources>
