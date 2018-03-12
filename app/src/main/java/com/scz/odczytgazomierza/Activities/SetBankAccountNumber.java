@@ -64,12 +64,12 @@ public class SetBankAccountNumber extends AppCompatActivity {
                 if (count == 1) {
                     checkAndModifyUserInput();
                 }
-                if (count > 1) {
+                else if (count > 1) {
                     newBankAccountNumber.removeTextChangedListener(this);
                     checkAndModifyUserPaste();
                     newBankAccountNumber.addTextChangedListener(this);
                 }
-                if (count == 0) {
+                else if (count == 0) {
                     checkAndModifyUserDelete();
                 }
             }

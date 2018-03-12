@@ -121,7 +121,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="Polityka prywatności"
+        android:text="@string/privacy_policy_title"
         android:textColor="@color/orange"
         android:textSize="18dp" />
 

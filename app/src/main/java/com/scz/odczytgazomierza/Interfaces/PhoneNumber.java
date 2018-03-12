@@ -5,5 +5,5 @@ package com.scz.odczytgazomierza.Interfaces;
  */
 
 public interface PhoneNumber {
-    String phoneNumber = "608600608";
+    String phoneNumber = "+48608600608";
 }
