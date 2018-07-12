@@ -4,7 +4,6 @@
     android:id="@+id/activity_start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:fitsSystemWindows="true"
     tools:context="com.scz.odczytgazomierza.Activities.StartActivity">
 
@@ -14,20 +13,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/meter_reading"
-        android:textColor="@color/dark_blue"
-        android:textSize="26dp" />
+        android:fontFamily="@font/worksans_bold"
+        android:textColor="@android:color/black"
+        android:textSize="26sp" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
         android:text="@string/permission_info"
+        android:fontFamily="@font/worksans_regular"
         android:textSize="17dp" />
 
     <ImageView
@@ -44,8 +46,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
         android:background="@drawable/button_dark_blue"
         android:text="@string/continue_button"
+        android:fontFamily="@font/worksans_bold"
         android:textColor="#fff"
         android:textSize="17dp" />
 

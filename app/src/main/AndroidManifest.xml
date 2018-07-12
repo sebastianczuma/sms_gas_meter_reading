@@ -25,7 +25,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SplashActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Splash"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>

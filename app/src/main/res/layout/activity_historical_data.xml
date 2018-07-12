@@ -21,12 +21,13 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/historical_data_title"
-                android:textColor="@color/dark_blue"
-                android:textSize="26dp" />
+                android:fontFamily="@font/worksans_bold"
+                android:textColor="@android:color/black"
+                android:textSize="26sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

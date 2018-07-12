@@ -5,7 +5,6 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     tools:context="com.scz.odczytgazomierza.Activities.MainActivity">
 
     <TextView
@@ -14,21 +13,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/meter_reading"
-        android:textColor="@color/dark_blue"
-        android:textSize="26dp" />
+        android:textColor="@android:color/black"
+        android:fontFamily="@font/worksans_bold"
+        android:textSize="26sp" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/worksans_regular"
         android:text="@string/meter_reading_info"
-        android:textSize="17dp" />
+        android:textSize="17sp" />
 
     <ImageButton
         android:id="@+id/next_fragment"
@@ -36,7 +38,6 @@
         android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="-10dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ic_keyboard_arrow_right"
         tools:ignore="ContentDescription" />
@@ -55,8 +56,9 @@
         android:padding="10dp"
         android:paddingEnd="55dp"
         android:paddingStart="0dp"
+        android:fontFamily="@font/worksans_regular"
         android:textColor="#fff"
-        android:textSize="22dp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/unit"
@@ -66,11 +68,12 @@
         android:layout_alignEnd="@+id/meter_reading_input"
         android:layout_alignTop="@+id/meter_reading_input"
         android:elevation="3dp"
+        android:fontFamily="@font/worksans_regular"
         android:paddingEnd="10dp"
         android:paddingStart="0dp"
         android:text="@string/m3"
         android:textColor="#e4555f"
-        android:textSize="22dp" />
+        android:textSize="22sp" />
 
     <Button
         android:id="@+id/send"
@@ -79,8 +82,10 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_red"
         android:text="@string/send"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/worksans_bold"
         android:textColor="#fff"
-        android:textSize="17dp" />
+        android:textSize="17sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -95,8 +100,9 @@
             android:layout_above="@+id/bank_account_number_info"
             android:layout_alignStart="@+id/bank_account_number"
             android:text="pierwszy"
-            android:textColor="@color/dark_blue"
-            android:textSize="18dp" />
+            android:fontFamily="@font/worksans_regular"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/bank_account_number_info"
@@ -105,17 +111,19 @@
             android:layout_above="@+id/bank_account_number"
             android:layout_alignStart="@+id/bank_account_number"
             android:text="@string/bank_account_number_info"
-            android:textSize="17dp" />
+            android:fontFamily="@font/worksans_regular"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/bank_account_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/bank_account_number_example"
-            android:textColor="@color/dark_blue"
-            android:textSize="18dp" />
+            android:fontFamily="@font/worksans_regular"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/edit"
@@ -126,7 +134,8 @@
             android:background="@android:color/transparent"
             android:text="@string/edit_number"
             android:textColor="@color/orange"
-            android:textSize="17dp" />
+            android:fontFamily="@font/worksans_bold"
+            android:textSize="17sp" />
 
         <Button
             android:id="@+id/choose"
@@ -136,7 +145,8 @@
             android:layout_below="@+id/bank_account_number"
             android:background="@android:color/transparent"
             android:text="@string/list_of_numbers"
+            android:fontFamily="@font/worksans_bold"
             android:textColor="@color/orange"
-            android:textSize="17dp" />
+            android:textSize="17sp" />
     </RelativeLayout>
 </RelativeLayout>

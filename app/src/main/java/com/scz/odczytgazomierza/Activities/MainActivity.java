@@ -56,39 +56,36 @@ public class MainActivity extends AppCompatActivity implements PhoneNumber {
             @Override
             public void onReceive(Context context, Intent intent) {
                 progressDialog.dismiss();
+                switch (getResultCode()) {
+                    case Activity.RESULT_OK:
+                        sendingSmsSuccess(getString(R.string.send_ok)).show();
 
-                if (intent.getAction().equals(SMS_SENT)) {
-                    switch (getResultCode()) {
-                        case Activity.RESULT_OK:
-                            sendingSmsSuccess(getString(R.string.send_ok)).show();
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+                        String currentDateAndTime = sdf.format(new Date());
+                        final DbHandler dbHandler = new DbHandler(getApplication());
+                        Item item = new Item();
+                        item.setDate(currentDateAndTime);
+                        item.setMeterReading(fragmentFirst.meterReading.getText().toString());
+                        item.setBankAccountNumber(fragmentFirst.bankAccountNumber);
+                        item.setPhoneNumber(PhoneNumber.phoneNumber);
+                        dbHandler.addItem(item);
+                        dbHandler.close();
 
-                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-                            String currentDateAndTime = sdf.format(new Date());
-                            final DbHandler dbHandler = new DbHandler(getApplication());
-                            Item item = new Item();
-                            item.setDate(currentDateAndTime);
-                            item.setMeterReading(fragmentFirst.meterReading.getText().toString());
-                            item.setBankAccountNumber(fragmentFirst.bankAccountNumber);
-                            item.setPhoneNumber(PhoneNumber.phoneNumber);
-                            dbHandler.addItem(item);
-                            dbHandler.close();
+                        fragmentFirst.meterReading.setText("");
 
-                            fragmentFirst.meterReading.setText("");
-
-                            break;
-                        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                            userInfo(getString(R.string.send_error_generic)).show();
-                            break;
-                        case SmsManager.RESULT_ERROR_NO_SERVICE:
-                            userInfo(getString(R.string.send_error_no_service)).show();
-                            break;
-                        case SmsManager.RESULT_ERROR_NULL_PDU:
-                            userInfo(getString(R.string.send_error_null_pdu)).show();
-                            break;
-                        case SmsManager.RESULT_ERROR_RADIO_OFF:
-                            userInfo(getString(R.string.send_error_radio_off)).show();
-                            break;
-                    }
+                        break;
+                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                        userInfo(getString(R.string.send_error_generic)).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_NO_SERVICE:
+                        userInfo(getString(R.string.send_error_no_service)).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_NULL_PDU:
+                        userInfo(getString(R.string.send_error_null_pdu)).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_RADIO_OFF:
+                        userInfo(getString(R.string.send_error_radio_off)).show();
+                        break;
                 }
             }
         };
