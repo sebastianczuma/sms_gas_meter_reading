@@ -38,7 +38,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/title"
         android:layout_marginTop="32dp"
-        android:layout_marginHorizontal="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_dark_blue"
         android:elevation="3dp"
         android:padding="10dp">
@@ -64,7 +65,7 @@
             android:fontFamily="@font/worksans_regular"
             android:text="@string/historical_data"
             android:textColor="#fff"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -74,11 +75,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/historical_data"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:fontFamily="@font/worksans_regular"
         android:text="@string/reminder_text_example"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:visibility="invisible" />
 
     <RelativeLayout
@@ -88,7 +91,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/historical_data"
         android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_dark_blue"
         android:elevation="3dp"
         android:padding="10dp">
@@ -114,7 +118,7 @@
             android:fontFamily="@font/worksans_regular"
             android:text="@string/reminder_off"
             android:textColor="#fff"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -128,6 +132,6 @@
         android:fontFamily="@font/worksans_regular"
         android:text="@string/privacy_policy_title"
         android:textColor="@color/orange"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>
