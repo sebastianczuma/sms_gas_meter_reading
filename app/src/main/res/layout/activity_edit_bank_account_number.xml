@@ -17,7 +17,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/edit_bank_account_number"
-        android:fontFamily="@font/worksans_bold"
+        android:fontFamily="@font/montserrat_bold"
         android:textColor="@android:color/black"
         android:textSize="26sp" />
 
@@ -28,7 +28,7 @@
         android:layout_below="@+id/title"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="24dp"
-        android:fontFamily="@font/worksans_regular"
+        android:fontFamily="@font/montserrat_regular"
         android:text="@string/bank_account_info"
         android:textSize="17sp" />
 
@@ -58,7 +58,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="@string/number"
-        android:fontFamily="@font/worksans_regular"
+        android:fontFamily="@font/montserrat_regular"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:inputType="number"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/bank_account_number_input"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/worksans_regular"
+        android:fontFamily="@font/montserrat_regular"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/name"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bank_account_name_input"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/worksans_bold"
+        android:fontFamily="@font/montserrat_bold"
         android:background="@android:color/transparent"
         android:text="@string/where_to_find"
         android:textColor="@color/orange"
@@ -96,7 +96,7 @@
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
-        android:fontFamily="@font/worksans_bold"
+        android:fontFamily="@font/montserrat_bold"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"

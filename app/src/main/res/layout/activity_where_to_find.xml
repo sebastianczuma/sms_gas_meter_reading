@@ -18,7 +18,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="32dp"
-        android:fontFamily="@font/worksans_regular"
+        android:fontFamily="@font/montserrat_regular"
         android:text="@string/where_to_find_text"
         android:textSize="17dp" />
 
