@@ -25,6 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac0d403a-d0fe-4a60-b333-e2f76f525b33" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/readme/overw_small.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="$PROJECT_DIR$/gradlew.bat" />
     </list>
@@ -2507,6 +2508,11 @@
               <item name="Odczytgazomierza" type="b2602c69:ProjectViewProjectNode" />
               <item name="Odczytgazomierza" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="Odczytgazomierza" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Odczytgazomierza" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="readme" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -2535,7 +2541,7 @@
     <property name="ExportApk.SignV1" value="true" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
     <property name="android.profiler.active" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540900387429" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540901914477" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -3067,7 +3073,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540900311775</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Smaller images for readme.">
+      <created>1540901910989</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1540901910989</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3161,7 +3174,8 @@
     <MESSAGE value="Aktualizacja wygladu (padding)" />
     <MESSAGE value="New font (Montserrat) and build tools update." />
     <MESSAGE value="Images for readme." />
-    <option name="LAST_COMMIT_MESSAGE" value="Images for readme." />
+    <MESSAGE value="Smaller images for readme." />
+    <option name="LAST_COMMIT_MESSAGE" value="Smaller images for readme." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
